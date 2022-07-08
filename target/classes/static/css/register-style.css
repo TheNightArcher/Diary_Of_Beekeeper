@@ -45,7 +45,6 @@ form .txt_field {
     background: none;
     outline: none;
     color: #d3d9df;
-
 }
 
 .txt_field label {
@@ -103,25 +102,10 @@ input[type="submit"] {
     font-weight: 700;
     cursor: pointer;
     outline: none;
+    margin-bottom: 22px;
 }
 
 input[type="submit"]:hover {
     border-color: goldenrod;
     transition: .5s;
-}
-
-.signup_link{
-    margin: 30px 0;
-    text-align: center;
-    font-size: 16px;
-    color: #adadad;
-}
-
-.signup_link a {
-    color: goldenrod;
-    text-decoration: none;
-}
-
-.signup_link a:hover {
-    text-decoration: underline;
 }
