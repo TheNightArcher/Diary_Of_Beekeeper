@@ -21,8 +21,6 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    private UserRoleEnum role;
-
     @Column(nullable = false)
     private String password;
 
@@ -75,13 +73,5 @@ public class UserEntity extends BaseEntity {
 
     public void setBeehives(List<BeehiveEntity> beehives) {
         this.beehives = beehives;
-    }
-
-    public UserRoleEnum getRole() {
-        return role;
-    }
-
-    public void setRole(UserRoleEnum role) {
-        this.role = role;
     }
 }

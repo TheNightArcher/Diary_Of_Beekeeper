@@ -1,0 +1,47 @@
+
+.menu-bar {
+    background-color: #48422e;
+}
+
+.nav-link {
+    position: relative;
+    font-size: 19px;
+    margin: 5px;
+    font-weight: 500;
+    font-family: montserrat, sans-serif;
+}
+
+.navbar-nav {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.menu-bar .navbar-toggler {
+    padding-right: 20px;
+    outline: none;
+    border: none;
+}
+
+
+.nav-link:hover {
+    font-weight: 600;
+    border-bottom: 1px solid white;
+}
+
+.navbar-brand img {
+    width: 114px;
+    margin-top: -67px;
+    margin-left: -7px;
+    margin-bottom: -51px;
+}
+
+.text-white {
+    color: #dee2e6 !important;
+    font-size: 17px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-link:hover {
+        border-bottom: none;
+    }
+}
