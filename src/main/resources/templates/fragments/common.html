@@ -4,8 +4,8 @@
 
 <header th:fragment="nav">
     <div class="menu-bar">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="/"><img th:class="logo-img" alt="bee picture" th:src="@{/images/bee.png}" class="logo"></a>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand text-warning" href="/"><img th:class="logo-img" alt="bee picture" th:src="@{/images/bee.png}" class="logo"> Diary Of Beekeeper</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,10 +16,13 @@
                         <a class="nav-link text-warning" href="#">News</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="/login">Login</a>
+                        <a class="nav-link text-warning" th:href="@{/users/login}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="/users/register">Register</a>
+                        <a class="nav-link text-warning" th:href="@{/}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" th:href="@{/users/register}">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-warning" href="#">My Beehives</a>

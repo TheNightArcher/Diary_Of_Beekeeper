@@ -11,6 +11,21 @@
     font-family: montserrat, sans-serif;
 }
 
+.navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: 5px solid;
+    color: goldenrod;
+}
+
 .navbar-nav {
     text-align: right;
     margin-right: 20px;
@@ -33,6 +48,12 @@
     margin-top: -67px;
     margin-left: -7px;
     margin-bottom: -51px;
+}
+
+a.navbar-brand{
+    font-family:  montserrat, sans-serif;
+    font-size: 1.55rem;
+    color: goldenrod;
 }
 
 .text-white {
