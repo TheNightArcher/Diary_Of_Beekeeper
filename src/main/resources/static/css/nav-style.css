@@ -50,8 +50,8 @@
     margin-bottom: -51px;
 }
 
-a.navbar-brand{
-    font-family:  montserrat, sans-serif;
+a.navbar-brand {
+    font-family: montserrat, sans-serif;
     font-size: 1.55rem;
     color: goldenrod;
 }
@@ -65,4 +65,59 @@ a.navbar-brand{
     .nav-link:hover {
         border-bottom: none;
     }
+}
+
+footer{
+    width: 100%;
+    background-color: #48422e;
+    border-top: 5px solid goldenrod;
+    color: honeydew;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: -37px auto;
+    padding: 0 50px;
+}
+
+.footer-social{
+    text-align: center;
+    margin: 10px;
+    position: relative;
+    left: 93%;
+    top: 33px;
+}
+
+footer h1{
+    font-size: 20px;
+}
+
+.footer-social ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.footer-social ul li a {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    top: -11px;
+}
+
+.footer-social ul li a i {
+    font-size: 25px;
+    transition: 1.5s;
+}
+
+.fab, .far {
+    font-weight: 400;
 }

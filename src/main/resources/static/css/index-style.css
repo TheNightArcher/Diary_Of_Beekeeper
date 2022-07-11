@@ -5,3 +5,14 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+
+main {
+    justify-content: space-between;
+    text-align: center;
+    color: #f5deb3;
+}
+
+.text-view{
+    position: relative;
+    bottom: -38px;
+}
