@@ -15,7 +15,6 @@ body {
     width: 400px;
     background: #614a24;
     border-radius: 10px;
-
 }
 
 .center h1 {
@@ -45,7 +44,6 @@ form .txt_field {
     background: none;
     outline: none;
     color: #d3d9df;
-
 }
 
 .txt_field label {
@@ -89,7 +87,6 @@ form .txt_field {
 
 .pass:hover {
     text-decoration: underline;
-
 }
 
 input[type="submit"] {

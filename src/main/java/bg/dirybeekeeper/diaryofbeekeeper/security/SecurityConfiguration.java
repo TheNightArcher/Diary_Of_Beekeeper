@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 // everyone can download static resources (css, js, images)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 // everyone can login and register
-                .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .antMatchers("/", "/users/login", "/users/register","/users/add-beehives").permitAll()
                 // all other pages are available for logger in users
                 .anyRequest()
                 .authenticated()
