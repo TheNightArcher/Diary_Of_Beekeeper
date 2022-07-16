@@ -20,57 +20,51 @@
         <h3>Добавяне на пчелен кошер</h3>
         <form method="post">
 
-            <div class="txt_field">
-                <input type="number" required>
+            <div class="txt_beehive-number">
                 <label>Номер на кошера</label>
+                <input type="number" required>
             </div>
 
             <div class="queen-info">
                 <h5>Информация за пчелата майка</h5>
-                <label>Вид  майката </label>
+                <label class="queen-type">Вид  майката </label>
                 <select name="queen" id="queen">
                     <option value="" selected></option>
                     <option th:each="q : ${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).values()}"
                             th:value="${q}" th:text="${q}"></option>
                 </select>
-                <div class="txt_field">
-                    <input type="number" required>
-                    <span></span>
+                <div class="txt_queen-years">
                     <label>Години на майката</label>
+                    <input type="number" required>
                 </div>
             </div>
 
-            <div>
+            <div class="frames-size">
                 <h5>Размер на Рамки</h5>
-                <div class="txt_field">
-                    <input type="number" required>
-                    <span></span>
+                <div class="txt_frame">
                     <label>Дължина</label>
-                </div>
-                <div class="txt_field">
                     <input type="number" required>
-                    <span></span>
+                </div>
+                <div class="txt_frame">
                     <label>Височина</label>
-                </div>
-                <div class="txt_field">
                     <input type="number" required>
-                    <span></span>
+                </div>
+                <div class="txt_frame">
                     <label>Широчина</label>
+                    <input type="number" required>
                 </div>
             </div>
 
-            <div class="txt_field">
-                <input type="number" required>
-                <span></span>
+            <div class="txt_capacity">
                 <label>Капацитет на кошера</label>
+                <input type="number" required>
             </div>
 
-            <div class="text_filed">
-                <input type="date">
-                <span></span>
+            <div class="text_last-nutrition">
                 <label>Последно подхранване</label>
+                <input type="date">
             </div>
-            <input type="submit" value="Add Beehive">
+            <input type="submit" value="Добави кошера">
         </form>
     </div>
 </main>
