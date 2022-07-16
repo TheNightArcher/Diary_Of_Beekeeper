@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <header th:fragment="nav">
     <div class="menu-bar">
@@ -15,10 +16,10 @@
                     <li class="nav-item">
                         <a class="nav-link text-warning" href="#">News</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
                         <a class="nav-link text-warning" th:href="@{/users/login}">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link text-warning" th:href="@{/}">Logout</a>
                     </li>
                     <li class="nav-item">
