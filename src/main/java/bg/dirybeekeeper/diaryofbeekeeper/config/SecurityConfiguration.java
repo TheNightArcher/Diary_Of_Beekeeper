@@ -1,7 +1,7 @@
 package bg.dirybeekeeper.diaryofbeekeeper.config;
 
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
-import bg.dirybeekeeper.diaryofbeekeeper.security.UserDetailsImp;
+import bg.dirybeekeeper.diaryofbeekeeper.security.BeekeeperUserDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfiguration {
@@ -40,9 +39,9 @@ public class SecurityConfiguration {
                 // the custom login form
                 .loginPage("/users/login")
                 // the name of the username form field
-                .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                .usernameParameter("username")
                 // the name of the password form field
-                .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                .passwordParameter("password")
                 // where to go in case that the login is successful
                 .defaultSuccessUrl("/")
                 // where to go in case that the login failed
@@ -63,6 +62,6 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository, ModelMapper modelMapper) {
-        return new UserDetailsImp(userRepository, modelMapper);
+        return new BeekeeperUserDetailsService(userRepository);
     }
 }

@@ -17,37 +17,67 @@
 <main>
     <div class="center">
         <h1>Register</h1>
-        <form th:action="@{/users/register}" th:method="post">
+        <form th:action="@{/users/register}" th:method="post" th:object="${registerBindingModel}">
 
             <div class="txt_field">
-                <input type="text" required>
+                <input th:field="*{username}"
+                       th:errorclass="is-invalid"
+                       type="text" required>
                 <span></span>
                 <label>Username</label>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Username is required and should be between 3 and 25 symbols.
+                </p>
             </div>
             <div class="txt_field">
-                <input type="text" required>
+                <input th:field="*{firstName}"
+                       th:errorclass="is-invalid"
+                       type="text" required>
                 <span></span>
                 <label>First Name</label>
+                <p class="invalid-feedback errors alert alert-danger">
+                    First name is required and should be between 3 and 20 symbols.
+                </p>
             </div>
             <div class="txt_field">
-                <input type="text" required>
+                <input th:field="*{lastName}"
+                       th:errorclass="is-invalid"
+                       type="text" required>
                 <span></span>
                 <label>Last Name</label>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Last name is required and should be between 3 and 20 symbols.
+                </p>
             </div>
             <div class="txt_field">
-                <input type="email" required>
+                <input th:field="*{email}"
+                       th:errorclass="is-invalid"
+                       type="email" required>
                 <span></span>
                 <label>Email</label>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Enter valid email address.
+                </p>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input th:field="*{password}"
+                       th:errorclass="is-invalid"
+                        type="password" required>
                 <span></span>
                 <label>Password</label>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Password is required and should be at least 5 symbols.
+                </p>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input th:field="*{confirmPassword}"
+                       th:errorclass="is-invalid"
+                        type="password" required>
                 <span></span>
                 <label>Confirm Password</label>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Passwords should match.
+                </p>
             </div>
             <input type="submit" value="Register">
         </form>

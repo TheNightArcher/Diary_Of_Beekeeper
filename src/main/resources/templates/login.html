@@ -18,17 +18,17 @@
 <main>
     <div class="center">
         <h1>Login</h1>
-        <form th:action="@{/users/login}" th:method="post">
+        <form th:action="@{/users/login}" method="post">
 
             <div class="txt_field">
-                <input id="username"
-                       name="username"
-                       type="text"
-                       min="3"
-                       max="25"
-                       required>
+                <input
+                        id="username"
+                        name="username"
+                        min="3"
+                        max="25"
+                        type="text" required>
                 <span></span>
-                <label>Username</label>
+                <label for="username">Username</label>
             </div>
             <div class="txt_field">
                 <input
@@ -38,8 +38,7 @@
                         max="20"
                         type="password" required>
                 <span></span>
-                <label>Password</label>
-
+                <label for="password">Password</label>
 
             </div>
             <div class="pass">Forgot Password?</div>

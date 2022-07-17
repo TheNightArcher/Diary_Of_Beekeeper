@@ -1,27 +1,34 @@
 package bg.dirybeekeeper.diaryofbeekeeper.security;
 
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
-import org.modelmapper.ModelMapper;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.stream.Collectors;
 
 // It's not a @Service
-public class UserDetailsImp implements UserDetailsService {
+public class BeekeeperUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
 
-    public UserDetailsImp(UserRepository userRepository, ModelMapper modelMapper) {
+    public BeekeeperUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .map(user -> modelMapper.map(user, UserDetails.class))
+                .map(u -> new User(
+                        u.getUsername(),
+                        u.getPassword(),
+                        u.getRoles()
+                                .stream()
+                                .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
+                                .collect(Collectors.toList())
+                ))
                 .orElseThrow(() -> new UsernameNotFoundException("User with that username:  " + username + " not found!"));
     }
 }
