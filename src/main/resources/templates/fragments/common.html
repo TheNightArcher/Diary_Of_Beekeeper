@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+
 <header th:fragment="nav">
     <div class="menu-bar">
         <nav class="navbar navbar-expand-lg">
@@ -11,28 +12,35 @@
                 Beekeeper</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" href="#">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" th:href="@{/users/login}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" th:href="@{/}" th:method="post">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" th:href="@{/users/register}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" href="#">My Beehives</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" th:href="@{/users/add-beehives}">Add Beehives</a>
-                    </li>
+                    <th:block sec:authorize="isAnonymous()">
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" href="#">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" th:href="@{/users/login}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" th:href="@{/users/register}">Register</a>
+                        </li>
+                    </th:block>
+
+                  <th:block sec:authorize="isAuthenticated()">
+                      <li class="nav-item">
+                          <a class="nav-link text-warning" href="#">My Beehives</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-warning" th:href="@{/users/add-beehives}">Add Beehives</a>
+                      </li>
+                      <li class=" nav-link text-warning">
+                          <form th:action="@{/users/logout}" th:method="post">
+                              <button type="submit">Logout</button>
+                          </form>
+                      </li>
+                  </th:block>
                 </ul>
             </div>
         </nav>

@@ -24,12 +24,13 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 // define which requests are allowed and which not
-                .authorizeHttpRequests()
+                .authorizeRequests()
                 // everyone can download static resources (css, js, images)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 // everyone can login and register
-                .antMatchers("/", "/users/login", "/users/register").permitAll()
-                .antMatchers("/users/add-beehives").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/login", "/users/register").anonymous()
+                .antMatchers("/users/add-beehives").authenticated()
                 // all other pages are available for logger in users
                 .anyRequest()
                 .authenticated()
@@ -51,6 +52,7 @@ public class SecurityConfiguration {
                 .logout()
                 // which is the logout url, must be POST request
                 .logoutUrl("/users/logout")
+                .clearAuthentication(true)
                 // on logout go to the home page
                 .logoutSuccessUrl("/")
                 // invalidate the session and delete the cookies

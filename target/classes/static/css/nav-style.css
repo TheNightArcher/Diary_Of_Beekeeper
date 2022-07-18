@@ -3,6 +3,17 @@
     background-color: #48422e;
 }
 
+button{
+    background-color: #48422e;
+    color: #ffc107;
+    border-block: none;
+    border-color: #f0cfcf00;
+}
+
+.navbar .fa{
+    color: goldenrod;
+    font-size: 26px;
+}
 .nav-link {
     position: relative;
     font-size: 19px;
