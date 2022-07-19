@@ -8,8 +8,8 @@
     <div class="menu-bar">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand text-warning" href="/"><img th:class="logo-img" alt="bee picture"
-                                                               th:src="@{/images/bee.png}" class="logo"> Diary Of
-                Beekeeper</a>
+                                                               th:src="@{/images/bee.png}" class="logo"
+            th:text="#{navbar_logo}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
@@ -18,29 +18,44 @@
                 <ul class="navbar-nav ml-auto">
                     <th:block sec:authorize="isAnonymous()">
                         <li class="nav-item">
-                            <a class="nav-link text-warning" href="#">News</a>
+                            <a class="nav-link text-warning" href="#" th:text="#{navbar_news}">News</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-warning" th:href="@{/users/login}">Login</a>
+                            <a class="nav-link text-warning" th:href="@{/users/login}"
+                               th:text="#{navbar_login}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-warning" th:href="@{/users/register}">Register</a>
+                            <a class="nav-link text-warning" th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
                         </li>
                     </th:block>
 
-                  <th:block sec:authorize="isAuthenticated()">
-                      <li class="nav-item">
-                          <a class="nav-link text-warning" href="#">My Beehives</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link text-warning" th:href="@{/users/add-beehives}">Add Beehives</a>
-                      </li>
-                      <li class=" nav-link text-warning">
-                          <form th:action="@{/users/logout}" th:method="post">
-                              <button type="submit">Logout</button>
-                          </form>
-                      </li>
-                  </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" href="#" th:text="#{navbar_my_beehives}">My Beehives</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" th:href="@{/users/add-beehives}"
+                               th:text="#{navbar_add_beehives}">Add Beehives</a>
+                        </li>
+                        <li class=" nav-link text-warning">
+                            <form th:action="@{/users/logout}" th:method="post">
+                                <button type="submit" th:text="#{navbar_logout}">Logout</button>
+                            </form>
+                        </li>
+                    </th:block>
+
+                    <li class="nav-item">
+                        <form th:method="get">
+                            <label class="text-white text-white" th:text="#{navbar_language}" for="lang"></label>
+                            <select
+                                    onchange="this.form.submit()"
+                                    id="lang"
+                                    name="lang">
+                                <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                                <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                            </select>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>
