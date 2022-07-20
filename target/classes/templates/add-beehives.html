@@ -17,54 +17,54 @@
 <header th:replace="/fragments/common::nav"></header>
 <main>
     <div class="center">
-        <h3>Добавяне на пчелен кошер</h3>
+        <h3 th:text="#{add_beehive_logo}">Добавяне на пчелен кошер</h3>
         <form th:action="@{/users/add-beehives}" th:method="post">
 
             <div class="txt_beehive-number">
-                <label>Номер на кошера</label>
+                <label th:text="#{add_beehive_number}">Номер на кошера</label>
                 <input type="number" required>
             </div>
 
             <div class="queen-info">
-                <h5>Информация за пчелата майка</h5>
-                <label class="queen-type">Вид  майката </label>
+                <h5 th:text="#{add_beehive_queen_info}">Информация за пчелата майка</h5>
+                <label class="queen-type" th:text="#{add_beehive_queen_type}">Вид  майката </label>
                 <select name="queen" id="queen">
                     <option value="" selected></option>
                     <option th:each="q : ${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).values()}"
                             th:value="${q}" th:text="${q}"></option>
                 </select>
                 <div class="txt_queen-years">
-                    <label>Години на майката</label>
+                    <label th:text="#{add_beehive_queen_years}">Години на майката</label>
                     <input type="number" required>
                 </div>
             </div>
 
             <div class="frames-size">
-                <h5>Размер на Рамки</h5>
+                <h5 th:text="#{add_beehive_frames_size}">Размер на Рамки</h5>
                 <div class="txt_frame">
-                    <label>Дължина</label>
+                    <label th:text="#{add_beehive_frames_length}">Дължина</label>
                     <input type="number" required>
                 </div>
                 <div class="txt_frame">
-                    <label>Височина</label>
+                    <label th:text="#{add_beehive_frames_height}">Височина</label>
                     <input type="number" required>
                 </div>
                 <div class="txt_frame">
-                    <label>Широчина</label>
+                    <label th:text="#{add_beehive_frames_width}">Широчина</label>
                     <input type="number" required>
                 </div>
             </div>
 
             <div class="txt_capacity">
-                <label>Капацитет на кошера</label>
+                <label th:text="#{add_beehive_capacity}">Капацитет на кошера</label>
                 <input type="number" required>
             </div>
 
             <div class="text_last-nutrition">
-                <label>Последно подхранване</label>
+                <label th:text="#{add_beehive_nutrition}">Последно подхранване</label>
                 <input type="date">
             </div>
-            <input type="submit" value="Добави кошера">
+            <button type="submit" class="add-beehive-button" th:text="#{add_beehive_button}">Login</button>
         </form>
     </div>
 </main>

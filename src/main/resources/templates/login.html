@@ -17,7 +17,7 @@
 <header th:replace="/fragments/common::nav"></header>
 <main>
     <div class="center">
-        <h1>Login</h1>
+        <h1 th:text="#{login_logo}">Login</h1>
         <form th:action="@{/users/login}" method="post">
 
             <div class="txt_field">
@@ -28,7 +28,7 @@
                         max="25"
                         type="text" required>
                 <span></span>
-                <label for="username">Username</label>
+                <label for="username" th:text="#{login_username}">Username</label>
             </div>
             <div class="txt_field">
                 <input
@@ -38,13 +38,13 @@
                         max="20"
                         type="password" required>
                 <span></span>
-                <label for="password">Password</label>
+                <label for="password" th:text="#{login_password}">Password</label>
 
             </div>
-            <div class="pass">Forgot Password?</div>
-            <input type="submit" value="Login">
+            <div class="pass" th:text="#{login_forgot_password}">Forgot Password?</div>
+            <button type="submit" class="login-button" th:text="#{login_button}">Login</button>
             <div class="signup_link">
-                Not a member? <a href="/register">Signup</a>
+                Not a member? <a th:href="@{/users/register}" th:text="#{login_signup}">Signup</a>
             </div>
         </form>
     </div>

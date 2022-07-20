@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-
+<body>
 <header th:fragment="nav">
     <div class="menu-bar">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand text-warning" href="/"><img th:class="logo-img" alt="bee picture"
                                                                th:src="@{/images/bee.png}" class="logo"
-            th:text="#{navbar_logo}"></a>
+                                                               th:text="#{navbar_logo}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
@@ -44,7 +44,7 @@
                         </li>
                     </th:block>
 
-                    <li class="nav-item">
+                    <li class="lang-switch">
                         <form th:method="get">
                             <label class="text-white text-white" th:text="#{navbar_language}" for="lang"></label>
                             <select
@@ -61,6 +61,10 @@
         </nav>
     </div>
 </header>
+<main>
+    <div class="center"></div>
+</main>
+</body>
 
 <footer th:fragment="footer">
     <div class="footer-content">
