@@ -22,6 +22,10 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    private boolean isEnabled;
+
+    private String verificationCode;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
@@ -82,5 +86,21 @@ public class UserEntity extends BaseEntity {
 
     public void setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 }

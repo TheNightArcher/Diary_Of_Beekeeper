@@ -1,8 +1,8 @@
 package bg.dirybeekeeper.diaryofbeekeeper.security;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,9 +21,10 @@ public class BeekeeperUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .map(u -> new User(
+                .map(u -> new BeekeeperUserDetails(
                         u.getUsername(),
                         u.getPassword(),
+                        u.isEnabled(),
                         u.getRoles()
                                 .stream()
                                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
