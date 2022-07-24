@@ -18,8 +18,12 @@
 <main>
     <div class="center">
         <h1 th:text="#{login_logo}">Login</h1>
-        <form th:action="@{/users/login}" method="post">
 
+        <p th:if="${bad_credentials}" class="error text-center" th:text="#{login_error}">
+            Invalid username or password.
+        </p>
+
+        <form th:action="@{/users/login}" method="post">
             <div class="txt_field">
                 <input
                         id="username"

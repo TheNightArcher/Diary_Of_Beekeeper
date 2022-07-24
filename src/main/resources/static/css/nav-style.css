@@ -79,6 +79,12 @@ a.navbar-brand {
     color: goldenrod;
 }
 
+.lang-switch{
+    position: relative;
+    top: 5px;
+    left: 15px
+}
+
 .text-white {
     color: #dee2e6 !important;
     font-size: 17px;

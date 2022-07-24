@@ -5,6 +5,7 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,18 @@ public class UserController {
     @GetMapping("/users/login")
     public String login() {
         return "login";
+    }
+
+    @PostMapping("/users/login-error")
+    public String failedLogin(
+            @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                    String username,
+            RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
+        redirectAttributes.addFlashAttribute("username", username);
+
+        return "redirect:/users/login";
     }
 
     @GetMapping("/users/register")
@@ -71,7 +84,6 @@ public class UserController {
             return "verify-fail";
         }
     }
-
 
     @ModelAttribute("registerBindingModel")
     public UserRegisterBindingModel userRegisterBindingModel() {
