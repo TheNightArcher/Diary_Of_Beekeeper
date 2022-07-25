@@ -1,15 +1,14 @@
 body {
-    margin: 0;
-    padding: 0;
     font-family: montserrat, sans-serif;
-    background: linear-gradient(120deg, #FCB43A, #3A3637);
-    height: 100vh;
-    overflow: auto;
+    background: linear-gradient(to right, #FCB43A, #3A3637);
+    position: relative;
 }
+
+
 
 .center {
     position: absolute;
-    top: 55%;
+    top: 49%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
@@ -107,4 +106,14 @@ form .txt_field {
 .register-button:hover {
     border-color: goldenrod;
     transition: .5s;
+}
+
+.validation-error{
+    color: #d53737eb;
+    font-size: 13px;
+    position: relative;
+    border: 1px solid #ffc1075e;
+    background-color: rgba(77, 61, 24, 0.32);
+    border-radius: 5px;
+    padding-left: 10px;
 }

@@ -21,69 +21,72 @@
         <h1 th:text="#{register_logo}">Register</h1>
         <form th:action="@{/users/register}" th:method="post" th:object="${registerBindingModel}">
 
+            <p class="validation-error" th:if="${#fields.hasErrors('username')}" th:text="#{register_error_username}">
+                Username is required and should be between 3 and 25 symbols.
+            </p>
             <div class="txt_field">
                 <input th:field="*{username}"
                        th:errorclass="is-invalid"
                        type="text" required>
                 <span></span>
                 <label th:text="#{register_username}">Username</label>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Username is required and should be between 3 and 25 symbols.
-                </p>
             </div>
+
+            <p class="validation-error" th:if="${#fields.hasErrors('firstName')}" th:text="#{register_error_firstName}">
+                First name is required and should be between 3 and 20 symbols.
+            </p>
             <div class="txt_field">
                 <input th:field="*{firstName}"
                        th:errorclass="is-invalid"
                        type="text" required>
                 <span></span>
                 <label th:text="#{register_first_name}">First Name</label>
-                <p class="invalid-feedback errors alert alert-danger">
-                    First name is required and should be between 3 and 20 symbols.
-                </p>
             </div>
+
+            <p class="validation-error" th:if="${#fields.hasErrors('lastName')}" th:text="#{register_error_lastName}">
+                Last name is required and should be between 3 and 20 symbols.
+            </p>
             <div class="txt_field">
                 <input th:field="*{lastName}"
                        th:errorclass="is-invalid"
                        type="text" required>
                 <span></span>
                 <label th:text="#{register_last_name}">Last Name</label>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Last name is required and should be between 3 and 20 symbols.
-                </p>
             </div>
+
+            <p class="validation-error" th:if="${#fields.hasErrors('email')}" th:text="#{register_error_email}">
+                Enter valid email address.
+            </p>
             <div class="txt_field">
                 <input th:field="*{email}"
-                       th:errorclass="is-invalid"
                        type="email" required>
                 <span></span>
                 <label th:text="#{register_email}">Email</label>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Enter valid email address.
-                </p>
             </div>
             <div class="txt_field">
+
                 <input th:field="*{password}"
                        th:errorclass="is-invalid"
-                        type="password" required>
+                       type="password" required>
                 <span></span>
                 <label th:text="#{register_password}">Password</label>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Password is required and should be at least 5 symbols.
-                </p>
             </div>
+
             <div class="txt_field">
                 <input th:field="*{confirmPassword}"
                        th:errorclass="is-invalid"
-                        type="password" required>
+                       type="password" required>
                 <span></span>
                 <label th:text="#{register_confirm_password}">Confirm Password</label>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Passwords should match.
-                </p>
             </div>
+            <p class="validation-error" th:if="${#fields.hasErrors('password')}"
+               th:text="#{register_error_password}">
+                Password is required and should be at least 5 symbols.
+            </p>
             <button type="submit" class="register-button" th:text="#{register_button}">Login</button>
         </form>
     </div>
 </main>
+<footer th:replace="/fragments/common::footer"></footer>
 </body>
 </html>
