@@ -2,29 +2,32 @@ package bg.dirybeekeeper.diaryofbeekeeper.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 @Entity(name = "queens")
-public class QueenEntity extends BaseEntity {
+public class QueenEntity extends BaseEntity{
 
     @Column(nullable = false)
-    private QueenTypeEnum type;
+    @Enumerated(EnumType.STRING)
+    private QueenTypeEnum queenType;
 
-    private LocalDate born;
+    private LocalDate queenBorn;
 
-    public QueenTypeEnum getType() {
-        return type;
+    public QueenTypeEnum getQueenType() {
+        return queenType;
     }
 
-    public void setType(QueenTypeEnum type) {
-        this.type = type;
+    public void setQueenType(QueenTypeEnum queenType) {
+        this.queenType = queenType;
     }
 
-    public LocalDate getBorn() {
-        return born;
+    public LocalDate getQueenBorn() {
+        return queenBorn;
     }
 
-    public void setBorn(LocalDate born) {
-        this.born = born;
+    public void setQueenBorn(LocalDate queenBorn) {
+        this.queenBorn = queenBorn;
     }
 }

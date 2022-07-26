@@ -41,9 +41,8 @@ body {
 .center .txt_queen-years {
     text-align: center;
     color: #daa520;
-    font-size: 20px;
-    margin: 21px 10px;
-    padding: 1px 0 10px 0;
+    margin: 30px 0;
+    padding: 2px 0 2px 0;
     border-bottom: 2px solid;
 }
 
@@ -127,4 +126,15 @@ button, input {
 .add-beehive-button:hover {
     border-color: goldenrod;
     transition: .5s;
+}
+
+.validation-error_beehive{
+    color: #d53737eb;
+    font-size: 14px;
+    position: relative;
+    border: 1px solid #ffc1075e;
+    background-color: rgba(77, 61, 24, 0.32);
+    border-radius: 5px;
+    padding-left: 10px;
+    text-align: center;
 }

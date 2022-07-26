@@ -4,8 +4,6 @@ body {
     position: relative;
 }
 
-
-
 .center {
     position: absolute;
     top: 49%;
@@ -110,7 +108,7 @@ form .txt_field {
 
 .validation-error{
     color: #d53737eb;
-    font-size: 13px;
+    font-size: 14px;
     position: relative;
     border: 1px solid #ffc1075e;
     background-color: rgba(77, 61, 24, 0.32);

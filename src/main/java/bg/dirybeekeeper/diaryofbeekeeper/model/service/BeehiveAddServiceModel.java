@@ -1,25 +1,18 @@
-package bg.dirybeekeeper.diaryofbeekeeper.model.entity;
+package bg.dirybeekeeper.diaryofbeekeeper.model.service;
 
-import javax.persistence.*;
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum;
+
 import java.time.LocalDate;
 
-@Entity(name = "beehives")
-public class BeehiveEntity extends BaseEntity {
-
-    @Column(nullable = false)
+public class BeehiveAddServiceModel {
     private String currentNumber;
-
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
-    private QueenEntity queen;
-
+    private QueenTypeEnum queenType;
+    private LocalDate born;
     private float length;
     private float high;
     private float width;
-    private LocalDate lastNutrition;
-
-    @Column(nullable = false)
     private byte capacity;
-    private boolean isAlive;
+    private LocalDate lastNutrition;
 
     public String getCurrentNumber() {
         return currentNumber;
@@ -27,6 +20,22 @@ public class BeehiveEntity extends BaseEntity {
 
     public void setCurrentNumber(String currentNumber) {
         this.currentNumber = currentNumber;
+    }
+
+    public QueenTypeEnum getQueenType() {
+        return queenType;
+    }
+
+    public void setQueenType(QueenTypeEnum queenType) {
+        this.queenType = queenType;
+    }
+
+    public LocalDate getBorn() {
+        return born;
+    }
+
+    public void setBorn(LocalDate born) {
+        this.born = born;
     }
 
     public float getLength() {
@@ -53,14 +62,6 @@ public class BeehiveEntity extends BaseEntity {
         this.width = width;
     }
 
-    public LocalDate getLastNutrition() {
-        return lastNutrition;
-    }
-
-    public void setLastNutrition(LocalDate lastNutrition) {
-        this.lastNutrition = lastNutrition;
-    }
-
     public byte getCapacity() {
         return capacity;
     }
@@ -69,19 +70,11 @@ public class BeehiveEntity extends BaseEntity {
         this.capacity = capacity;
     }
 
-    public boolean isAlive() {
-        return isAlive;
+    public LocalDate getLastNutrition() {
+        return lastNutrition;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
-
-    public QueenEntity getQueen() {
-        return queen;
-    }
-
-    public void setQueen(QueenEntity queen) {
-        this.queen = queen;
+    public void setLastNutrition(LocalDate lastNutrition) {
+        this.lastNutrition = lastNutrition;
     }
 }

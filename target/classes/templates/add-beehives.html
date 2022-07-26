@@ -18,24 +18,42 @@
 <main>
     <div class="center">
         <h3 th:text="#{add_beehive_logo}">Добавяне на пчелен кошер</h3>
-        <form th:action="@{/users/add-beehives}" th:method="post">
+        <form th:action="@{/users/add-beehives}" th:method="post" th:object="${beehiveAddBindingModel}">
 
+            <p class="validation-error_beehive" th:if="${#fields.hasErrors('currentNumber')}"
+               th:text="#{add_beehive_error_hiveNumber}">
+                Hive number is required.
+            </p>
             <div class="txt_beehive-number">
                 <label th:text="#{add_beehive_number}">Номер на кошера</label>
-                <input type="number" required>
+                <input
+                        th:field="*{currentNumber}"
+                        th:errorclass="is-invalid"
+                        type="number">
             </div>
 
+            <p class="validation-error_beehive" th:if="${#fields.hasErrors('queenType')}"
+               th:text="#{add_beehive_error_queenType}">
+                Queen type required.
+            </p>
             <div class="queen-info">
                 <h5 th:text="#{add_beehive_queen_info}">Информация за пчелата майка</h5>
-                <label class="queen-type" th:text="#{add_beehive_queen_type}">Вид  майката </label>
-                <select name="queen" id="queen">
+                <label class="queen-type" th:text="#{add_beehive_queen_type}">Вид майката </label>
+                <select
+                        id="queenType"
+                        name="queenType"
+                        th:errorclass="is-invalid">
                     <option value="" selected></option>
                     <option th:each="q : ${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).values()}"
-                            th:value="${q}" th:text="${q}"></option>
+                            th:value="${q}"
+                            th:text="${q}"
+                            th:selected="${q} == *{queenType}"></option>
                 </select>
                 <div class="txt_queen-years">
                     <label th:text="#{add_beehive_queen_years}">Години на майката</label>
-                    <input type="number" required>
+                    <input th:field="*{queenBorn}"
+                           th:errorclass="is-invalid"
+                           type="date">
                 </div>
             </div>
 
@@ -43,26 +61,32 @@
                 <h5 th:text="#{add_beehive_frames_size}">Размер на Рамки</h5>
                 <div class="txt_frame">
                     <label th:text="#{add_beehive_frames_length}">Дължина</label>
-                    <input type="number" required>
+                    <input th:field="*{length}"
+                           type="number">
                 </div>
                 <div class="txt_frame">
                     <label th:text="#{add_beehive_frames_height}">Височина</label>
-                    <input type="number" required>
+                    <input th:field="*{high}"
+                           type="number">
                 </div>
                 <div class="txt_frame">
                     <label th:text="#{add_beehive_frames_width}">Широчина</label>
-                    <input type="number" required>
+                    <input th:field="*{width}"
+                           type="number">
                 </div>
             </div>
 
             <div class="txt_capacity">
                 <label th:text="#{add_beehive_capacity}">Капацитет на кошера</label>
-                <input type="number" required>
+                <input th:field="*{capacity}"
+                       th:errorclass="is-invalid"
+                       type="number">
             </div>
 
             <div class="text_last-nutrition">
                 <label th:text="#{add_beehive_nutrition}">Последно подхранване</label>
-                <input type="date">
+                <input th:field="*{lastNutrition}"
+                       type="date">
             </div>
             <button type="submit" class="add-beehive-button" th:text="#{add_beehive_button}">Login</button>
         </form>

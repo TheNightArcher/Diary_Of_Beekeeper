@@ -3,6 +3,7 @@ package bg.dirybeekeeper.diaryofbeekeeper.model.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "users")
 public class UserEntity extends BaseEntity {
@@ -29,8 +30,8 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
-    @OneToMany
-    private List<BeehiveEntity> beehives = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<BeehiveEntity> beehives;
 
     public String getUsername() {
         return username;
@@ -72,11 +73,11 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
-    public List<BeehiveEntity> getBeehives() {
+    public Set<BeehiveEntity> getBeehives() {
         return beehives;
     }
 
-    public void setBeehives(List<BeehiveEntity> beehives) {
+    public void setBeehives(Set<BeehiveEntity> beehives) {
         this.beehives = beehives;
     }
 

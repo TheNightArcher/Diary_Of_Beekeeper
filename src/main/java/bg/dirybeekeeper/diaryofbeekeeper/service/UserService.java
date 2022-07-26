@@ -1,7 +1,9 @@
 package bg.dirybeekeeper.diaryofbeekeeper.service;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
+import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
@@ -62,7 +64,6 @@ public class UserService {
                 + "Thank you,<br>"
                 + "The Diary Of Beekeeper";
 
-
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -92,6 +93,14 @@ public class UserService {
 
             return true;
         }
+    }
 
+    public void addBeehive(BeehiveEntity beehive, BeekeeperUserDetails userDetails) {
+        Optional<UserEntity> userOpt = userRepository.findByUsername(userDetails.getUsername());
+
+        UserEntity user = modelMapper.map(userOpt, UserEntity.class);
+        user.getBeehives().add(beehive);
+
+        userRepository.save(user);
     }
 }
