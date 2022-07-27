@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title th:text="#{title_login}">Login</title>
     <link rel="stylesheet" th:href="@{/css/login-style.css}">
     <link rel="stylesheet" th:href="@{/css/nav-style.css}">
     <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
@@ -28,6 +28,7 @@
             <div class="txt_field">
                 <input
                         id="username"
+                        th:value="${username}"
                         name="username"
                         min="3"
                         max="25"

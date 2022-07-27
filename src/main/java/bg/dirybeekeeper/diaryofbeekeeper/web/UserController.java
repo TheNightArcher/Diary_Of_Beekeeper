@@ -40,8 +40,8 @@ public class UserController {
                     String username,
             RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addFlashAttribute("bad_credentials", true);
         redirectAttributes.addFlashAttribute("username", username);
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
 
         return "redirect:/users/login";
     }
