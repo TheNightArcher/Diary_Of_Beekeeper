@@ -101,7 +101,7 @@ footer{
     background-color: #48422e;
     border-top: 5px solid goldenrod;
     color: honeydew;
-    height: 100px;
+    height: 93px;
     margin-top: 310px;
     text-align: center;
 }
@@ -122,16 +122,14 @@ footer{
     top: 33px;
 }
 
-footer h1{
-    font-size: 20px;
-}
-
 .footer-social ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     list-style: none;
-    margin-top: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+
 }
 
 .footer-social ul li a {
@@ -146,6 +144,12 @@ footer h1{
     transition: 1.5s;
 }
 
-.fab, .far {
-    font-weight: 400;
+.footer-copyright{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.social-text{
+    text-align: center;
+    margin-top: 15px;
 }
