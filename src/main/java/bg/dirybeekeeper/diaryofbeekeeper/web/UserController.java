@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.MessagingException;
@@ -23,10 +24,12 @@ public class UserController {
 
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final LocaleResolver localeResolver;
 
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, LocaleResolver localeResolver) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.localeResolver = localeResolver;
     }
 
     @GetMapping("/users/login")
@@ -66,7 +69,7 @@ public class UserController {
         }
 
         UserRegisterServiceModel user = modelMapper.map(registerBindingModel, UserRegisterServiceModel.class);
-        userService.registerUser(user, getSiteURL(request));
+        userService.registerUser(user, localeResolver.resolveLocale(request));
 
         return "redirect:/users/process_register";
     }

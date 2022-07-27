@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration mail</title>
+</head>
+<body>
+<div class="container">
+    <h3 th:text="#{registration_user(${username})}"></h3>
+    <br th:text="#{registration_click_link}">Please click the link below to verify your registration:</br>
+    <h3><a th:href="${link}">VERIFY</a></h3>
+    <br th:text="#{registration_thanks}">Thank you,</br>
+    <br th:text="#{registration_group}">The Diary Of Beekeeper</br>
+</div>
+</body>
+</html>
