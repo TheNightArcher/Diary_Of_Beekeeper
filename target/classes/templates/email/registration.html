@@ -8,10 +8,10 @@
 <body>
 <div class="container">
     <h3 th:text="#{registration_user(${username})}"></h3>
-    <br th:text="#{registration_click_link}">Please click the link below to verify your registration:</br>
+    <p th:text="#{registration_click_link}">Please click the link below to verify your registration:</p>
     <h3><a th:href="${link}">VERIFY</a></h3>
-    <br th:text="#{registration_thanks}">Thank you,</br>
-    <br th:text="#{registration_group}">The Diary Of Beekeeper</br>
+    <p th:text="#{registration_thanks}">Thank you,</p>
+    <p th:text="#{registration_group}">The Diary Of Beekeeper</p>
 </div>
 </body>
 </html>

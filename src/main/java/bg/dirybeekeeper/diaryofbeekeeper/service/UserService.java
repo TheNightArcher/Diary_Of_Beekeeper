@@ -10,8 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -30,13 +28,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(UserRegisterServiceModel userRegisterServiceModel, Locale preferredLocale)
-            throws MessagingException, UnsupportedEncodingException {
-        Optional<UserEntity> byEmail = userRepository.findByEmail(userRegisterServiceModel.getUsername());
-
-        if (byEmail.isPresent()) {
-            throw new RuntimeException("This email is already used.");
-        }
+    public void registerUser(UserRegisterServiceModel userRegisterServiceModel, Locale preferredLocale) {
 
         UserEntity user = modelMapper.map(userRegisterServiceModel, UserEntity.class);
         user.setPassword(passwordEncoder.encode(userRegisterServiceModel.getPassword()));

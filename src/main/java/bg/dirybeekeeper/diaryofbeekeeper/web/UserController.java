@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
 
 @Controller
 public class UserController {
@@ -58,7 +56,7 @@ public class UserController {
     public String registerConfirm(@Valid UserRegisterBindingModel registerBindingModel,
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes,
-                                  HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+                                  HttpServletRequest request) {
         System.out.println(bindingResult);
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registerBindingModel", registerBindingModel);
@@ -91,10 +89,5 @@ public class UserController {
     @ModelAttribute("registerBindingModel")
     public UserRegisterBindingModel userRegisterBindingModel() {
         return new UserRegisterBindingModel();
-    }
-
-    private String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
     }
 }

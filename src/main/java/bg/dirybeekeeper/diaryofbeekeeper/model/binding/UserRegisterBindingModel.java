@@ -1,13 +1,24 @@
 package bg.dirybeekeeper.diaryofbeekeeper.model.binding;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.validation.FieldMatch;
+import bg.dirybeekeeper.diaryofbeekeeper.model.validation.UniqueUserEmail;
+import bg.dirybeekeeper.diaryofbeekeeper.model.validation.UniqueUsername;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword"
+)
 public class UserRegisterBindingModel {
 
     @NotBlank
     @Size(min = 3, max = 25)
+    @NotEmpty
+    @UniqueUsername(message = "The username should be unique.")
     private String username;
 
     @NotBlank
@@ -19,7 +30,9 @@ public class UserRegisterBindingModel {
     private String lastName;
 
     @NotBlank
-    @Email
+    @NotEmpty()
+    @Email()
+    @UniqueUserEmail()
     private String email;
 
     @NotBlank
