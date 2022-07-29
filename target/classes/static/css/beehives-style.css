@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: montserrat, sans-serif;
+    background: linear-gradient(to right, #FCB43A, #3A3637);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.text-logo{
+    text-align: center;
+    color: wheat;
+    margin-top: 40px;
+}
+
+.logo{
+    width: 114px;
+    text-align: center;
+}

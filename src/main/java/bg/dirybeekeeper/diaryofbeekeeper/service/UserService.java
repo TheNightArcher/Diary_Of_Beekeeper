@@ -4,14 +4,14 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
+import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -63,5 +63,20 @@ public class UserService {
         user.getBeehives().add(beehive);
 
         userRepository.save(user);
+    }
+
+    public List<UserBeehivesView> findMyBeehives(String username) {
+        return userRepository.findByUsername(username)
+                .map(user -> {
+                    List<UserBeehivesView> myBeehives = new ArrayList<>();
+
+                    for (BeehiveEntity beehive : user.getBeehives()) {
+                        myBeehives.add(new UserBeehivesView(beehive.getId(),
+                                beehive.getCurrentNumber(),
+                                beehive.getCapacity()));
+                    }
+                    return myBeehives;
+                })
+                .orElseThrow();
     }
 }

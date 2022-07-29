@@ -3,19 +3,19 @@ package bg.dirybeekeeper.diaryofbeekeeper.web;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.BeehiveAddBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.BeehiveAddServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
+import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.service.BeehiveService;
 import bg.dirybeekeeper.diaryofbeekeeper.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller()
 @RequestMapping("/users")
@@ -53,7 +53,16 @@ public class BeehivesController {
         BeehiveAddServiceModel beehive = modelMapper.map(beehiveAddBindingModel, BeehiveAddServiceModel.class);
         userService.addBeehive(beehiveService.addBeehive(beehive), userDetails);
 
-        return "redirect:/";
+        return "redirect:/users/beehives/all";
+    }
+
+    @GetMapping("/beehives/all")
+    public String myBeehives(Model model, @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
+        List<UserBeehivesView> myBeehives = userService.findMyBeehives(userDetails.getUsername());
+
+        model.addAttribute("myBeehives", myBeehives);
+
+        return "beehives";
     }
 
     @ModelAttribute

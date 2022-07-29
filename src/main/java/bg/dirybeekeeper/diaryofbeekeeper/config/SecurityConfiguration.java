@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                 // everyone can login and register
                 .antMatchers("/","/static/favicon.ico").permitAll()
                 .antMatchers("/users/login", "/users/register","/users/process_register","/verify").anonymous()
-                .antMatchers("/users/add-beehives").authenticated()
+                .antMatchers("/users/add-beehives","/users/beehives/**").authenticated()
                 // all other pages are available for logger in users
                 .anyRequest()
                 .authenticated()
