@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class BeehiveEntity extends BaseEntity {
 
     @Column(nullable = false)
-    private String currentNumber;
+    private Integer currentNumber;
 
     @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     private QueenEntity queen;
@@ -21,11 +21,11 @@ public class BeehiveEntity extends BaseEntity {
     private byte capacity;
     private boolean isAlive;
 
-    public String getCurrentNumber() {
+    public Integer getCurrentNumber() {
         return currentNumber;
     }
 
-    public void setCurrentNumber(String currentNumber) {
+    public void setCurrentNumber(Integer currentNumber) {
         this.currentNumber = currentNumber;
     }
 

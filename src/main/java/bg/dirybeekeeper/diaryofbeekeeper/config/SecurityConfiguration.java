@@ -2,7 +2,6 @@ package bg.dirybeekeeper.diaryofbeekeeper.config;
 
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
 import bg.dirybeekeeper.diaryofbeekeeper.security.BeekeeperUserDetailsService;
-import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +24,6 @@ public class SecurityConfiguration {
         http
                 // define which requests are allowed and which not
                 .authorizeRequests()
-                // everyone can download static resources (css, js, images)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 // everyone can login and register
                 .antMatchers("/","/static/favicon.ico").permitAll()
@@ -63,7 +61,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new BeekeeperUserDetailsService(userRepository);
     }
 }

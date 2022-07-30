@@ -7,13 +7,38 @@ body {
     overflow: hidden;
 }
 
-.text-logo{
+.beehives-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.beehive-container {
+    min-width: 300px;
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.text-logo {
     text-align: center;
     color: wheat;
     margin-top: 40px;
 }
 
-.logo{
-    width: 114px;
+.beehive-logo {
+    width: 260px;
     text-align: center;
+}
+
+.beehive-container .beehive-number {
+    position: relative;
+    top: 34px;
+    right: 153px;
+    margin: 5px 5px 5px 5px;
+    color: #2b69ad;
 }

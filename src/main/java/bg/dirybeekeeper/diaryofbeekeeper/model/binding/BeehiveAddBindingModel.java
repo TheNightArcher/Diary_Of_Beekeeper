@@ -12,7 +12,7 @@ public class BeehiveAddBindingModel {
 
     @NotNull
     @Positive
-    private String currentNumber;
+    private Integer currentNumber;
 
     @NotNull
     private QueenTypeEnum queenType;
@@ -39,11 +39,11 @@ public class BeehiveAddBindingModel {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate lastNutrition;
 
-    public String getCurrentNumber() {
+    public Integer getCurrentNumber() {
         return currentNumber;
     }
 
-    public void setCurrentNumber(String currentNumber) {
+    public void setCurrentNumber(Integer currentNumber) {
         this.currentNumber = currentNumber;
     }
 

@@ -3,15 +3,15 @@ package bg.dirybeekeeper.diaryofbeekeeper.model.view;
 public class UserBeehivesView {
 
     private Long id;
-    private String currentNumber;
+    private Integer currentNumber;
     private byte capacity;
 
-    public UserBeehivesView(Long id, String currentNumber, byte capacity) {
+    public UserBeehivesView(Long id, Integer currentNumber, byte capacity) {
         this.id = id;
         this.currentNumber = currentNumber;
         this.capacity = capacity;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -20,11 +20,11 @@ public class UserBeehivesView {
         this.id = id;
     }
 
-    public String getCurrentNumber() {
+    public Integer getCurrentNumber() {
         return currentNumber;
     }
 
-    public void setCurrentNumber(String currentNumber) {
+    public void setCurrentNumber(Integer currentNumber) {
         this.currentNumber = currentNumber;
     }
 
