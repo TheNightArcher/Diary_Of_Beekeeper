@@ -3,6 +3,7 @@ package bg.dirybeekeeper.diaryofbeekeeper.web;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.BeehiveAddBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.BeehiveAddServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
+import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehiveDetailsView;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.service.BeehiveService;
 import bg.dirybeekeeper.diaryofbeekeeper.service.UserService;
@@ -63,6 +64,17 @@ public class BeehivesController {
         model.addAttribute("myBeehives", myBeehives);
 
         return "beehives";
+    }
+
+    @GetMapping("/beehives/details/{id}")
+    public String beehiveDetails(@PathVariable Long id,
+                                 Model model,
+                                 @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
+
+        UserBeehiveDetailsView currentBeehive = userService.findBeehiveDetails(userDetails.getUsername(), id);
+        model.addAttribute("currentBeehive", currentBeehive);
+
+        return "details";
     }
 
     @ModelAttribute

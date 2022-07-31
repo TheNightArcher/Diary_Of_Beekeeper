@@ -4,6 +4,7 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
+import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehiveDetailsView;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
@@ -78,5 +79,30 @@ public class UserService {
                     return myBeehives;
                 })
                 .orElseThrow();
+    }
+
+    public UserBeehiveDetailsView findBeehiveDetails(String username, Long beehiveId) {
+        return userRepository.findByUsername(username)
+                .map(user -> {
+                    BeehiveEntity currentBeehive = user.getBeehives()
+                            .stream()
+                            .filter(b -> b.getId().equals(beehiveId))
+                            .findFirst()
+                            .orElse(null);
+
+                    assert currentBeehive != null;
+                    return new UserBeehiveDetailsView(
+                            currentBeehive.getId(),
+                            currentBeehive.getCurrentNumber(),
+                            currentBeehive.getQueen().getQueenType(),
+                            currentBeehive.getQueen().getQueenBorn(),
+                            currentBeehive.getLength(),
+                            currentBeehive.getHigh(),
+                            currentBeehive.getWidth(),
+                            currentBeehive.getLastNutrition(),
+                            currentBeehive.getCapacity(),
+                            currentBeehive.isAlive()
+                    );
+                }).orElse(null);
     }
 }
