@@ -1,6 +1,10 @@
 body {
+    margin: 0;
+    padding: 0;
     font-family: montserrat, sans-serif;
     background: linear-gradient(to right, #FCB43A, #3A3637);
+    height: 100vh;
+    overflow: auto;
 }
 
 .text-logo {
@@ -12,11 +16,10 @@ body {
 .beehive-details{
     position: absolute;
     top: 28%;
-    left: 20%;
+    left: 26%;
     background: wheat;
     border-radius: 10px;
-    width: 800px;
-    overflow: auto;
+    width: 700px;
 }
 
 .element-details{
@@ -25,12 +28,12 @@ body {
 
 .beehive-layouts{
     text-align: left;
-    margin-right: 100px;
+    margin-right: 50px;
     display: inline-block;
 }
 
 .beehive-result{
     text-align: left;
-    margin-left: 110px;
+    margin-left: 50px;
     display: inline-block;
 }

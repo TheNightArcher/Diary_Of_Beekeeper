@@ -9,6 +9,9 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +69,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<UserBeehivesView> findMyBeehives(String username) {
+    public Page<UserBeehivesView> findMyBeehives(String username, Pageable pageable) {
         return userRepository.findByUsername(username)
                 .map(user -> {
                     List<UserBeehivesView> myBeehives = new ArrayList<>();
@@ -76,7 +79,13 @@ public class UserService {
                                 beehive.getCurrentNumber(),
                                 beehive.getCapacity()));
                     }
-                    return myBeehives;
+
+                    myBeehives.sort(Comparator.comparingInt(UserBeehivesView::getCurrentNumber));
+
+                    int start = (int) pageable.getOffset();
+                    int end = Math.min((start + pageable.getPageSize()), myBeehives.size());
+
+                    return (Page<UserBeehivesView>) new PageImpl<>(myBeehives.subList(start, end), pageable, myBeehives.size());
                 })
                 .orElseThrow();
     }

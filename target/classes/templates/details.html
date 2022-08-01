@@ -2,9 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Details</title>
+    <title th:text="#{beehive_logo}">Details</title>
     <meta charset="UTF-8">
-    <title th:text="#{my_beehives_logo}">My beehives</title>
     <link rel="stylesheet" th:href="@{/css/details-style.css}">
     <link rel="stylesheet" th:href="@{/css/nav-style.css}">
     <link rel="icon" type="image/ico" th:href="@{/static/favicon.ico}">
@@ -15,7 +14,7 @@
 <body>
 <header th:replace="/fragments/common::nav"></header>
 <main>
-    <h1 class="text-logo">Beehives details</h1>
+    <h1 class="text-logo" th:text="#{beehive_logo}">Beehives details</h1>
     <input type="hidden" name="beehiveId" id="beehiveId" th:value="${currentBeehive.id}">
     <div class="beehive-details" th:object="${currentBeehive}">
         <div class="beehive-layouts">
@@ -32,10 +31,16 @@
 
         <div class="beehive-result">
             <h3 class="element-details" th:text="*{currentNumber}">Current Number</h3>
-            <div th:switch="${queenType}">
-                <h3 class="element-details" th:case="${Brown}" th:text="#{queen_type_brown}"></h3>
-                <h3 class="element-details" th:case="${Yellow}" th:text="#{queen_type_yellow}"></h3>
-                <h3 class="element-details" th:case="${Black}" th:text="#{beehive_status_alive}"></h3>
+            <div th:switch="${currentBeehive.queenType}">
+                <h3 class="element-details"
+                    th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Brown}"
+                    th:text="#{queen_type_brown}"></h3>
+                <h3 class="element-details"
+                    th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Yellow}"
+                    th:text="#{queen_type_yellow}"></h3>
+                <h3 class="element-details"
+                    th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Black}"
+                    th:text="#{queen_type_black}"></h3>
             </div>
             <h3 class="element-details" th:text="*{queenBorn}">Queen born</h3>
             <h3 class="element-details" th:text="*{length}">Length</h3>
@@ -43,9 +48,9 @@
             <h3 class="element-details" th:text="*{width}">Width</h3>
             <h3 class="element-details" th:text="*{lastNutrition}">Last nutrition</h3>
             <h3 class="element-details" th:text="*{capacity}">Capacity</h3>
-            <div th:switch="${isAlive}">
+            <div th:switch="${currentBeehive.isAlive}">
                 <h3 class="element-details" th:case="${true}" th:text="#{beehive_status_alive}">TRUE</h3>
-                <h3 class="element-details" th:case="*" th:text="#{beehive_status_dead}">FALSE</h3>
+                <h3 class="element-details" th:case="${false}" th:text="#{beehive_status_dead}">FALSE</h3>
             </div>
         </div>
     </div>

@@ -45,10 +45,12 @@
                         name="queenType"
                         th:errorclass="is-invalid">
                     <option value="" selected></option>
-                    <option th:each="q : ${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).values()}"
-                            th:value="${q}"
-                            th:text="${q}"
-                            th:selected="${q} == *{queenType}"></option>
+                    <option th:value="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Brown}"
+                            th:text="#{queen_type_brown}"></option>
+                    <option th:value="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Yellow}"
+                            th:text="#{queen_type_yellow}"></option>
+                    <option th:value="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Black}"
+                            th:text="#{queen_type_black}"></option>
                 </select>
                 <div class="txt_queen-years">
                     <label th:text="#{add_beehive_queen_years}">Години на майката</label>

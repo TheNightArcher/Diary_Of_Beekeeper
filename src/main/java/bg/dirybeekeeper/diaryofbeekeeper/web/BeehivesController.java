@@ -8,6 +8,10 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.service.BeehiveService;
 import bg.dirybeekeeper.diaryofbeekeeper.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller()
 @RequestMapping("/users")
@@ -58,8 +61,14 @@ public class BeehivesController {
     }
 
     @GetMapping("/beehives/all")
-    public String myBeehives(Model model, @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
-        List<UserBeehivesView> myBeehives = userService.findMyBeehives(userDetails.getUsername());
+    public String myBeehives(@AuthenticationPrincipal BeekeeperUserDetails userDetails,
+                             Model model,
+                             @PageableDefault(
+                                     sort = "currentNumber",
+                                     direction = Sort.Direction.ASC,
+                                     size = 4
+                             ) Pageable pageable) {
+        Page<UserBeehivesView> myBeehives = userService.findMyBeehives(userDetails.getUsername(), pageable);
 
         model.addAttribute("myBeehives", myBeehives);
 
