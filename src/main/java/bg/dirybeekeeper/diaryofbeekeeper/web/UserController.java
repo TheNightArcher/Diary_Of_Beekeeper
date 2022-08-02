@@ -2,11 +2,17 @@ package bg.dirybeekeeper.diaryofbeekeeper.web;
 
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.UserRegisterBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
+import bg.dirybeekeeper.diaryofbeekeeper.model.view.UsersView;
 import bg.dirybeekeeper.diaryofbeekeeper.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -84,6 +90,20 @@ public class UserController {
         } else {
             return "verify-fail";
         }
+    }
+
+    @GetMapping("/users/admin/view")
+    private String adminView(Model model,
+                             @PageableDefault(
+                                     sort = "id",
+                                     direction = Sort.Direction.ASC,
+                                     size = 4
+                             ) Pageable pageable) {
+        Page<UsersView> users = userService.findAllUsers(pageable);
+
+        model.addAttribute("users", users);
+
+        return "admin-view";
     }
 
     @ModelAttribute("registerBindingModel")

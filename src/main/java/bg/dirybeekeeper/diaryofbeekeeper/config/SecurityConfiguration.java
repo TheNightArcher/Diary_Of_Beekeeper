@@ -29,6 +29,7 @@ public class SecurityConfiguration {
                 .antMatchers("/","/static/favicon.ico").permitAll()
                 .antMatchers("/users/login", "/users/register","/users/process_register","/verify").anonymous()
                 .antMatchers("/users/add-beehives","/users/beehives/**").authenticated()
+                .antMatchers("/users/admin/view").hasRole("ADMIN")
                 // all other pages are available for logger in users
                 .anyRequest()
                 .authenticated()

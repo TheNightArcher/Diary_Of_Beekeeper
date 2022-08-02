@@ -2,8 +2,11 @@ package bg.dirybeekeeper.diaryofbeekeeper.service;
 
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEntity;
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEnum;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
+import bg.dirybeekeeper.diaryofbeekeeper.model.view.UsersView;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehiveDetailsView;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.UserRepository;
@@ -16,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -40,6 +44,14 @@ public class UserService {
         String randomCode = RandomString.make(60);
         user.setVerificationCode(randomCode);
         user.setEnabled(false);
+
+        UserRoleEntity role = new UserRoleEntity();
+        role.setRole(UserRoleEnum.USER);
+
+        List<UserRoleEntity> roles = new ArrayList<>();
+        roles.add(role);
+
+        user.setRoles(roles);
 
         this.userRepository.save(user);
 
@@ -113,5 +125,11 @@ public class UserService {
                             currentBeehive.isAlive()
                     );
                 }).orElse(null);
+    }
+
+    public Page<UsersView> findAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable)
+                .map(u -> modelMapper.map(u, UsersView.class));
+
     }
 }

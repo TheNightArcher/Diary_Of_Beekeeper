@@ -27,8 +27,8 @@ public class UserEntity extends BaseEntity {
 
     private String verificationCode;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<UserRoleEntity> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<UserRoleEntity> roles;
 
     @OneToMany(fetch = FetchType.EAGER)
     private Set<BeehiveEntity> beehives;

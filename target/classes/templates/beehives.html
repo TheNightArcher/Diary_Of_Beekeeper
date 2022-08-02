@@ -16,60 +16,61 @@
     <h1 class="text-logo" th:text="#{my_beehives_logo}">My Beehives</h1>
     <div class="beehives-wrapper" th:action="@{/users/beehives/all}" th:method="get" th:object="${myBeehives}">
         <div class="beehive-container" th:each="b : ${myBeehives}" th:object="${b}">
-            <a th:href="@{/users/beehives/details/{id}(id=*{id})}"> <img class="beehive-logo" th:src="@{/images/beehive.png}"
-                                                                   alt="beehive logo"></a>
+            <a th:href="@{/users/beehives/details/{id}(id=*{id})}"> <img class="beehive-logo"
+                                                                         th:src="@{/images/beehive.png}"
+                                                                         alt="beehive logo"></a>
             <h3 class="beehive-number" th:text="*{currentNumber}">Current Number</h3>
         </div>
     </div>
 
-  <div class="pagination-part">
-      <div class="container-fluid container-fluid row justify-content-center">
-          <nav>
-              <ul class="pagination">
-                  <li class="page-item" th:classappend="${myBeehives.isFirst()} ? 'disabled' : ''">
-                      <a th:unless="${myBeehives.isFirst()}"
-                         th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=0)}"
-                         class="page" href="#" th:text="#{beehive_pagination_first}">First</a>
-                      <a th:if="${myBeehives.isFirst()}"
-                         class="page" href="#" th:text="#{beehive_pagination_first}">First</a>
-                  </li>
-              </ul>
-          </nav>
-          <nav>
-              <ul class="pagination">
-                  <li class="page-item" th:classappend="${myBeehives.hasPrevious() ? '' : 'disabled'}">
-                      <a th:if="${myBeehives.hasPrevious()}"
-                         th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=${myBeehives.getNumber() - 1})}"
-                         class="page" href="#" th:text="#{beehive_pagination_previous}">Previous</a>
-                      <a th:unless="${myBeehives.hasPrevious()}"
-                         class="page" href="#" th:text="#{beehive_pagination_previous}">Previous</a>
-                  </li>
-              </ul>
-          </nav>
-          <nav>
-              <ul class="pagination">
-                  <li class="page-item" th:classappend="${myBeehives.hasNext() ? '' : 'disabled'}">
-                      <a th:if="${myBeehives.hasNext()}"
-                         th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=${myBeehives.getNumber() + 1})}"
-                         class="page" href="#" th:text="#{beehive_pagination_next}">Next</a>
-                      <a th:unless="${myBeehives.hasNext()}"
-                         class="page" href="#" th:text="#{beehive_pagination_next}">Next</a>
-                  </li>
-              </ul>
-          </nav>
-          <nav>
-              <ul class="pagination">
-                  <li class="page-item" th:classappend="${myBeehives.isLast()} ? 'disabled' : ''">
-                      <a th:unless="${myBeehives.isLast()}"
-                         th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=${myBeehives.getTotalPages() - 1})}"
-                         class="page" href="#" th:text="#{beehive_pagination_last}">Last</a>
-                      <a th:if="${myBeehives.isLast()}"
-                         class="page " href="#" th:text="#{beehive_pagination_last}">Last</a>
-                  </li>
-              </ul>
-          </nav>
-      </div>
-  </div>
+    <div class="pagination-part">
+        <div class="container-fluid container-fluid row justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${myBeehives.isFirst()} ? 'disabled' : ''">
+                        <a th:unless="${myBeehives.isFirst()}"
+                           th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=0)}"
+                           class="page" href="#" th:text="#{pagination_first}">First</a>
+                        <a th:if="${myBeehives.isFirst()}"
+                           class="page" href="#" th:text="#{pagination_first}">First</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${myBeehives.hasPrevious() ? '' : 'disabled'}">
+                        <a th:if="${myBeehives.hasPrevious()}"
+                           th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=${myBeehives.getNumber() - 1})}"
+                           class="page" href="#" th:text="#{pagination_previous}">Previous</a>
+                        <a th:unless="${myBeehives.hasPrevious()}"
+                           class="page" href="#" th:text="#{pagination_previous}">Previous</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${myBeehives.hasNext() ? '' : 'disabled'}">
+                        <a th:if="${myBeehives.hasNext()}"
+                           th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=${myBeehives.getNumber() + 1})}"
+                           class="page" href="#" th:text="#{pagination_next}">Next</a>
+                        <a th:unless="${myBeehives.hasNext()}"
+                           class="page" href="#" th:text="#{pagination_next}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${myBeehives.isLast()} ? 'disabled' : ''">
+                        <a th:unless="${myBeehives.isLast()}"
+                           th:href="@{/users/beehives/all(size=${myBeehives.getSize()},page=${myBeehives.getTotalPages() - 1})}"
+                           class="page" href="#" th:text="#{pagination_last}">Last</a>
+                        <a th:if="${myBeehives.isLast()}"
+                           class="page " href="#" th:text="#{pagination_last}">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </main>
 <footer th:replace="/fragments/common::footer"></footer>
 </body>

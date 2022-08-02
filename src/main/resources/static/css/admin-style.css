@@ -7,40 +7,33 @@ body {
     overflow: auto;
 }
 
-.beehives-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.users-wrapper{
+
 }
 
-.beehive-container {
-    min-width: 300px;
-    height: 210px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px;
+.users-layouts{
+    background: wheat;
+    display: -webkit-box;
+}
+
+.users-container{
+    background: wheat;
+    display: -webkit-box;
+}
+
+.element-details-id{
+    margin: 5px 10px;
+    padding: 5px;
+}
+
+.element-details{
+    margin: 10px;
 }
 
 .text-logo {
     text-align: center;
     color: wheat;
     margin-top: 40px;
-}
-
-.beehive-logo {
-    width: 260px;
-    text-align: center;
-}
-
-.beehive-container .beehive-number {
-    position: relative;
-    top: 34px;
-    right: 153px;
-    margin: 5px 5px 5px 5px;
-    color: #2b69ad;
 }
 
 .pagination {
@@ -68,7 +61,9 @@ body {
 }
 
 
- /*------------------------------Footer_Navbar-------------------------------------------*/
+/*------------------------------Footer_Navbar-------------------------------------------*/
+
+
 
 
 
