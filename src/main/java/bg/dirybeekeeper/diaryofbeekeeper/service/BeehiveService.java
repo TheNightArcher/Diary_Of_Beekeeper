@@ -32,4 +32,13 @@ public class BeehiveService {
 
         return beehiveRepository.save(beehive);
     }
+
+    public void deleteBeehiveById(Long id) {
+        beehiveRepository.deleteById(id);
+    }
+
+    public BeehiveEntity findBeehive(Long id) {
+        return beehiveRepository.findById(id)
+                .orElse(null);
+    }
 }

@@ -86,6 +86,13 @@ public class BeehivesController {
         return "details";
     }
 
+    @DeleteMapping("/beehives/details/{id}")
+    public String deleteBeehive(@PathVariable Long id, @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
+        userService.deleteBeehiveById(userDetails.getUsername(), id);
+        beehiveService.deleteBeehiveById(id);
+        return "redirect:/users/beehives/all";
+    }
+
     @ModelAttribute
     public BeehiveAddBindingModel beehiveAddBindingModel() {
         return new BeehiveAddBindingModel();

@@ -19,19 +19,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
     private final EmailService emailService;
+    private final BeehiveService beehiveService;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, EmailService emailService, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, EmailService emailService, BeehiveService beehiveService, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.emailService = emailService;
+        this.beehiveService = beehiveService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
     }
@@ -131,5 +132,29 @@ public class UserService {
         return userRepository.findAll(pageable)
                 .map(u -> modelMapper.map(u, UsersView.class));
 
+    }
+
+    public void deleteBeehiveById(String username, Long id) {
+        Optional<UserEntity> findUser = userRepository.findByUsername(username);
+
+        if (findUser.isPresent()) {
+            UserEntity user = modelMapper.map(findUser, UserEntity.class);
+
+            BeehiveEntity beehive = beehiveService.findBeehive(id);
+
+            System.out.println(user.getBeehives());
+
+            for (var element : user.getBeehives()) {
+
+                if (element.getId().equals(beehive.getId())) {
+                    user.getBeehives().remove(element);
+                    break;
+                }
+            }
+
+            userRepository.save(user);
+
+            System.out.println(user.getBeehives());
+        }
     }
 }

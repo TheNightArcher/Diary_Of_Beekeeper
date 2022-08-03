@@ -53,6 +53,15 @@
                 <h3 class="element-details" th:case="${false}" th:text="#{beehive_status_dead}">FALSE</h3>
             </div>
         </div>
+
+        <div class="card-body">
+            <form
+                    th:action="@{/users/beehives/details/{id}(id=*{id})}"
+                    th:method="delete"
+            >
+                <input type="submit" value="Delete">
+            </form>
+        </div>
     </div>
 </main>
 <footer th:replace="/fragments/common::footer"></footer>

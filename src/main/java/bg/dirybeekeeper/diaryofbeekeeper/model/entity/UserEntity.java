@@ -30,7 +30,7 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<UserRoleEntity> roles;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<BeehiveEntity> beehives;
 
     public String getUsername() {
@@ -103,5 +103,20 @@ public class UserEntity extends BaseEntity {
 
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", isEnabled=" + isEnabled +
+                ", verificationCode='" + verificationCode + '\'' +
+                ", roles=" + roles +
+                ", beehives=" + beehives +
+                '}';
     }
 }
