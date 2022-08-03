@@ -142,8 +142,6 @@ public class UserService {
 
             BeehiveEntity beehive = beehiveService.findBeehive(id);
 
-            System.out.println(user.getBeehives());
-
             for (var element : user.getBeehives()) {
 
                 if (element.getId().equals(beehive.getId())) {
@@ -153,8 +151,6 @@ public class UserService {
             }
 
             userRepository.save(user);
-
-            System.out.println(user.getBeehives());
         }
     }
 }

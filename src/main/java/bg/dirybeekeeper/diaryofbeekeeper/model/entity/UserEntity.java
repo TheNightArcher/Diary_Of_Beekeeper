@@ -3,6 +3,7 @@ package bg.dirybeekeeper.diaryofbeekeeper.model.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "users")
@@ -103,6 +104,19 @@ public class UserEntity extends BaseEntity {
 
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity user = (UserEntity) o;
+        return isEnabled == user.isEnabled && Objects.equals(username, user.username) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(verificationCode, user.verificationCode) && Objects.equals(roles, user.roles) && Objects.equals(beehives, user.beehives);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, firstName, lastName, email, password, isEnabled, verificationCode, roles, beehives);
     }
 
     @Override
