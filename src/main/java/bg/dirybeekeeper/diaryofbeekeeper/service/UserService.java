@@ -4,6 +4,7 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEnum;
+import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveService;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UsersView;
@@ -123,7 +124,7 @@ public class UserService {
                             currentBeehive.getWidth(),
                             currentBeehive.getLastNutrition(),
                             currentBeehive.getCapacity(),
-                            currentBeehive.isAlive()
+                            currentBeehive.getStatus()
                     );
                 }).orElse(null);
     }
@@ -134,7 +135,7 @@ public class UserService {
 
     }
 
-    public void deleteBeehiveById(String username, Long id) {
+    public void deleteUserBeehiveById(String username, Long id) {
         Optional<UserEntity> findUser = userRepository.findByUsername(username);
 
         if (findUser.isPresent()) {
@@ -142,7 +143,7 @@ public class UserService {
 
             BeehiveEntity beehive = beehiveService.findBeehive(id);
 
-            for (var element : user.getBeehives()) {
+            for (BeehiveEntity element : user.getBeehives()) {
 
                 if (element.getId().equals(beehive.getId())) {
                     user.getBeehives().remove(element);
@@ -151,6 +152,24 @@ public class UserService {
             }
 
             userRepository.save(user);
+        }
+    }
+
+    public void editUserBeehiveById(String username, BeehiveEntity beehive) {
+        Optional<UserEntity> findUser = userRepository.findByUsername(username);
+
+        if (findUser.isPresent()) {
+            UserEntity user = modelMapper.map(findUser, UserEntity.class);
+
+            for (BeehiveEntity element : user.getBeehives()) {
+
+                if (element.getId().equals(beehive.getId())) {
+                    user.getBeehives().remove(element);
+                    user.getBeehives().add(beehive);
+                }
+
+                userRepository.save(user);
+            }
         }
     }
 }

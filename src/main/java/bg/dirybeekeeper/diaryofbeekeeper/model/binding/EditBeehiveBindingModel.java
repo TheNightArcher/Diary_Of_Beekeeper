@@ -1,25 +1,49 @@
-package bg.dirybeekeeper.diaryofbeekeeper.model.service;
+package bg.dirybeekeeper.diaryofbeekeeper.model.binding;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
-public class BeehiveAddServiceModel {
-    private Integer currentNumber;
+public class EditBeehiveBindingModel {
+
+    private Long id;
+
     private QueenTypeEnum queenType;
-    private LocalDate born;
+
+    @PastOrPresent
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate queenBorn;
+
+    @Positive
     private float length;
+
+    @Positive
     private float high;
+
+    @Positive
     private float width;
+
+    @Positive
     private byte capacity;
+
+    @PastOrPresent
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate lastNutrition;
 
-    public Integer getCurrentNumber() {
-        return currentNumber;
+    @NotNull
+    private BeehiveStatusEnum status;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setCurrentNumber(Integer currentNumber) {
-        this.currentNumber = currentNumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public QueenTypeEnum getQueenType() {
@@ -30,12 +54,12 @@ public class BeehiveAddServiceModel {
         this.queenType = queenType;
     }
 
-    public LocalDate getBorn() {
-        return born;
+    public LocalDate getQueenBorn() {
+        return queenBorn;
     }
 
-    public void setBorn(LocalDate born) {
-        this.born = born;
+    public void setQueenBorn(LocalDate queenBorn) {
+        this.queenBorn = queenBorn;
     }
 
     public float getLength() {
@@ -76,5 +100,13 @@ public class BeehiveAddServiceModel {
 
     public void setLastNutrition(LocalDate lastNutrition) {
         this.lastNutrition = lastNutrition;
+    }
+
+    public BeehiveStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(BeehiveStatusEnum status) {
+        this.status = status;
     }
 }

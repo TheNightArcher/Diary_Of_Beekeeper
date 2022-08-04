@@ -1,11 +1,11 @@
 package bg.dirybeekeeper.diaryofbeekeeper.model.service;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum;
 
 import java.time.LocalDate;
 
-public class BeehiveAddServiceModel {
-    private Integer currentNumber;
+public class EditBeehiveService {
     private QueenTypeEnum queenType;
     private LocalDate born;
     private float length;
@@ -13,14 +13,7 @@ public class BeehiveAddServiceModel {
     private float width;
     private byte capacity;
     private LocalDate lastNutrition;
-
-    public Integer getCurrentNumber() {
-        return currentNumber;
-    }
-
-    public void setCurrentNumber(Integer currentNumber) {
-        this.currentNumber = currentNumber;
-    }
+    private BeehiveStatusEnum status;
 
     public QueenTypeEnum getQueenType() {
         return queenType;
@@ -76,5 +69,13 @@ public class BeehiveAddServiceModel {
 
     public void setLastNutrition(LocalDate lastNutrition) {
         this.lastNutrition = lastNutrition;
+    }
+
+    public BeehiveStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(BeehiveStatusEnum status) {
+        this.status = status;
     }
 }

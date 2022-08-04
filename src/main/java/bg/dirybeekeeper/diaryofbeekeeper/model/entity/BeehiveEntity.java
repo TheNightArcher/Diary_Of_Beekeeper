@@ -16,10 +16,10 @@ public class BeehiveEntity extends BaseEntity {
     private float high;
     private float width;
     private LocalDate lastNutrition;
-
-    @Column(nullable = false)
     private byte capacity;
-    private boolean isAlive;
+
+    @Enumerated(value = EnumType.STRING)
+    private BeehiveStatusEnum status;
 
     public Integer getCurrentNumber() {
         return currentNumber;
@@ -69,12 +69,12 @@ public class BeehiveEntity extends BaseEntity {
         this.capacity = capacity;
     }
 
-    public boolean isAlive() {
-        return isAlive;
+    public BeehiveStatusEnum getStatus() {
+        return status;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
+    public void setStatus(BeehiveStatusEnum status) {
+        this.status = status;
     }
 
     public QueenEntity getQueen() {

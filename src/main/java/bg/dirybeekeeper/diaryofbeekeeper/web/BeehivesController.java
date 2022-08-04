@@ -1,7 +1,9 @@
 package bg.dirybeekeeper.diaryofbeekeeper.web;
 
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.BeehiveAddBindingModel;
+import bg.dirybeekeeper.diaryofbeekeeper.model.binding.EditBeehiveBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.BeehiveAddServiceModel;
+import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveService;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehiveDetailsView;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
@@ -88,9 +90,43 @@ public class BeehivesController {
 
     @DeleteMapping("/beehives/details/{id}")
     public String deleteBeehive(@PathVariable Long id, @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
-        userService.deleteBeehiveById(userDetails.getUsername(), id);
+        userService.deleteUserBeehiveById(userDetails.getUsername(), id);
         beehiveService.deleteBeehiveById(id);
+
         return "redirect:/users/beehives/all";
+    }
+
+    @GetMapping("/beehives/details/edit/{id}")
+    public String editBeehive(@PathVariable Long id) {
+        return "edit-beehive";
+    }
+
+
+    @PostMapping("/beehives/details/edit/{id}")
+    public String editBeehiveConfirm(@PathVariable Long id,
+                                     @Valid EditBeehiveBindingModel editBeehiveBindingModel,
+                                     BindingResult bindingResult,
+                                     RedirectAttributes redirectAttributes,
+                                     @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("editBeehiveBindingModel", editBeehiveBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editBeehiveBindingModel"
+                    , bindingResult);
+
+            return "redirect:/users/beehives/details/edit/{id}";
+        }
+
+        EditBeehiveService editedBeehive = modelMapper.map(editBeehiveBindingModel, EditBeehiveService.class);
+
+        userService.editUserBeehiveById(userDetails.getUsername(), beehiveService.editBeehive(id, editedBeehive));
+
+        return "redirect:/users/beehives/all";
+    }
+
+    @ModelAttribute
+    public EditBeehiveBindingModel editBeehiveBindingModel() {
+        return new EditBeehiveBindingModel();
     }
 
     @ModelAttribute

@@ -1,5 +1,6 @@
 package bg.dirybeekeeper.diaryofbeekeeper.model.view;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class UserBeehiveDetailsView {
     private float width;
     private LocalDate lastNutrition;
     private byte capacity;
-    private boolean isAlive;
+    private BeehiveStatusEnum status;
 
     public UserBeehiveDetailsView(Long id,
                                   Integer currentNumber,
@@ -26,7 +27,7 @@ public class UserBeehiveDetailsView {
                                   float width,
                                   LocalDate lastNutrition,
                                   byte capacity,
-                                  boolean isAlive) {
+                                  BeehiveStatusEnum status) {
         this.id = id;
         this.currentNumber = currentNumber;
         this.queenType = queenType;
@@ -36,7 +37,7 @@ public class UserBeehiveDetailsView {
         this.width = width;
         this.lastNutrition = lastNutrition;
         this.capacity = capacity;
-        this.isAlive = isAlive;
+        this.status = status;
     }
 
     public Long getId() {
@@ -111,11 +112,11 @@ public class UserBeehiveDetailsView {
         this.capacity = capacity;
     }
 
-    public boolean isAlive() {
-        return isAlive;
+    public BeehiveStatusEnum getStatus() {
+        return status;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
+    public void setStatus(BeehiveStatusEnum status) {
+        this.status = status;
     }
 }
