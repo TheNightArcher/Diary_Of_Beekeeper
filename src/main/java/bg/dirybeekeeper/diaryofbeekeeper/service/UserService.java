@@ -4,7 +4,6 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEnum;
-import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveService;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.UserRegisterServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UsersView;
@@ -16,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -171,5 +171,13 @@ public class UserService {
                 userRepository.save(user);
             }
         }
+    }
+
+    @Scheduled(cron = "0 0 00 * * *")
+    private void deleteAllEnabledUsers() {
+        userRepository.findAll()
+                .stream()
+                .filter(u -> !u.isEnabled())
+                .forEach(user -> userRepository.deleteById(user.getId()));
     }
 }
