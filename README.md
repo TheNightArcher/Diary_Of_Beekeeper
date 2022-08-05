@@ -1,9 +1,10 @@
 # Diary of Beekeeper  ![alt text][logo]
-[logo]: https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/3367.png_300-removebg-preview.pgn
+[logo]:https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/3367.png_300-removebg-preview.png
 
 
 ![Diary of Beekeeper](https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/home_page.jpg)
 
+https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/3367.png_300-removebg-preview.png
 
 # Build With:
 * ![Spring Boot](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
