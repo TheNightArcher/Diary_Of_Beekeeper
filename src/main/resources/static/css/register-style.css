@@ -2,14 +2,12 @@ body {
     font-family: montserrat, sans-serif;
     background: linear-gradient(to right, #FCB43A, #3A3637);
     position: relative;
+    height: 100vh;
 }
 
 .center {
-    position: absolute;
-    top: 49%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
+    margin: auto;
+    width: 30%;
     background: #614a24;
     border-radius: 10px;
 }

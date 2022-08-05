@@ -1,1 +1,1 @@
-# -Diary-of-Beekeeper
+# Diary of Beekeeper

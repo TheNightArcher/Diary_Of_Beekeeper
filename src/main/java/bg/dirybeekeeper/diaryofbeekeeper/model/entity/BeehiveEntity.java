@@ -6,10 +6,10 @@ import java.time.LocalDate;
 @Entity(name = "beehives")
 public class BeehiveEntity extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private Integer currentNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private QueenEntity queen;
 
     private float length;

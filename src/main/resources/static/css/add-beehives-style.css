@@ -1,17 +1,15 @@
 body {
     font-family: montserrat, sans-serif;
     background: linear-gradient(to right, #FCB43A, #3A3637);
+    height: 100vh;
+    overflow: auto;
 }
 
 .center {
-    position: absolute;
-    top: 74%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
+    margin: auto;
+    width: 35%;
     background: #614a24;
     border-radius: 10px;
-    overflow: auto;
 }
 
 .center h3 {
