@@ -1,6 +1,6 @@
 # Diary of Beekeeper
 
-# ![Diary of Beekeeper](https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/3367.png_300-removebg-preview.png)
+# ![Diary of Beekeeper](https://TheNightArcher.github.io/Diary_Of_Beekeeper/blob/master/images/home_page.jpg)
 
 
 
