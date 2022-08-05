@@ -7,10 +7,6 @@ body {
     overflow: auto;
 }
 
-.users-wrapper{
-
-}
-
 .users-layouts{
     background: wheat;
     display: -webkit-box;

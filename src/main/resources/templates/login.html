@@ -47,7 +47,8 @@
                 <label for="password" th:text="#{login_password}">Password</label>
 
             </div>
-            <div class="pass" th:text="#{login_forgot_password}">Forgot Password?</div>
+            <div class="pass">
+             <a th:href="@{/users/forgot}" th:text="#{login_forgot_password}">Forgot Password?</a></div>
             <button type="submit" class="login-button" th:text="#{login_button}">Login</button>
             <div class="signup_link">
                 Not a member? <a th:href="@{/users/register}" th:text="#{login_signup}">Signup</a>

@@ -25,6 +25,22 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
+    public void sendForgotPasswordVerificationCode(UserEntity user, Locale resolveLocale) {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+            mimeMessageHelper.setFrom("diaryofbeekeeper@gmail.com");
+            mimeMessageHelper.setTo(user.getEmail());
+            mimeMessageHelper.setSubject(getEmailSubject(resolveLocale));
+            mimeMessageHelper.setText(generateMessageContentResetPassword(resolveLocale, user), true);
+
+            javaMailSender.send(mimeMessageHelper.getMimeMessage());
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void sendVerificationEmail(UserEntity user, Locale preferredLocale) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
@@ -33,7 +49,7 @@ public class EmailService {
             mimeMessageHelper.setFrom("diaryofbeekeeper@gmail.com");
             mimeMessageHelper.setTo(user.getEmail());
             mimeMessageHelper.setSubject(getEmailSubject(preferredLocale));
-            mimeMessageHelper.setText(generateMessageContent(preferredLocale, user), true);
+            mimeMessageHelper.setText(generateMessageContentRegister(preferredLocale, user), true);
 
             javaMailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException e) {
@@ -48,7 +64,18 @@ public class EmailService {
                 locale);
     }
 
-    private String generateMessageContent(Locale locale, UserEntity user) {
+    private String generateMessageContentResetPassword(Locale locale, UserEntity user) {
+
+        Context context = new Context();
+        context.setLocale(locale);
+        context.setVariable("username", user.getUsername());
+        context.setVariable("randomPassword", user.getPassword());
+        context.setVariable("link", "http://localhost:8080/change?code=" + user.getVerificationCode());
+
+        return templateEngine.process("email/forgot-password", context);
+    }
+
+    private String generateMessageContentRegister(Locale locale, UserEntity user) {
 
         Context context = new Context();
         context.setLocale(locale);

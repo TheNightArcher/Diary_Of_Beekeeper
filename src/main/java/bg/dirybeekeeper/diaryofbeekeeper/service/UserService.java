@@ -1,5 +1,6 @@
 package bg.dirybeekeeper.diaryofbeekeeper.service;
 
+import bg.dirybeekeeper.diaryofbeekeeper.model.binding.ForgotPasswordBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserRoleEntity;
@@ -36,6 +37,29 @@ public class UserService {
         this.beehiveService = beehiveService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public void sendToUserVerificationCode(String email, Locale resolveLocale) {
+        Optional<UserEntity> byEmail = userRepository.findByEmail(email);
+        UserEntity user = modelMapper.map(byEmail, UserEntity.class);
+
+        String randomPassword = RandomString.make(6);
+        user.setPassword(randomPassword);
+
+        this.userRepository.save(user);
+
+        emailService.sendForgotPasswordVerificationCode(user, resolveLocale);
+    }
+
+    public void setUserNewPassword(ForgotPasswordBindingModel bindingModel) {
+        Optional<UserEntity> findByPass = userRepository.findByPassword(bindingModel.getGivenPassword());
+
+        UserEntity user = modelMapper.map(findByPass, UserEntity.class);
+
+        user.setPassword(passwordEncoder.encode(bindingModel.getPassword()));
+        user.setVerificationCode(null);
+
+        userRepository.save(user);
     }
 
     public void registerUser(UserRegisterServiceModel userRegisterServiceModel, Locale preferredLocale) {
@@ -171,6 +195,12 @@ public class UserService {
                 userRepository.save(user);
             }
         }
+    }
+
+    public boolean findEmailIsPresent(String email) {
+        UserEntity user = userRepository.findByEmail(email).orElse(null);
+
+        return user != null;
     }
 
     @Scheduled(cron = "0 0 00 * * *")

@@ -97,7 +97,7 @@ public class UserController {
                              @PageableDefault(
                                      sort = "id",
                                      direction = Sort.Direction.ASC,
-                                     size = 4
+                                     size = 8
                              ) Pageable pageable) {
         Page<UsersView> users = userService.findAllUsers(pageable);
 
