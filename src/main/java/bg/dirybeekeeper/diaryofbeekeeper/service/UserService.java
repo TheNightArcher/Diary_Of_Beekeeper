@@ -1,5 +1,6 @@
 package bg.dirybeekeeper.diaryofbeekeeper.service;
 
+import bg.dirybeekeeper.diaryofbeekeeper.exception.ObjectNotFoundException;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.ForgotPasswordBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
@@ -128,7 +129,7 @@ public class UserService {
                 .orElseThrow();
     }
 
-    public UserBeehiveDetailsView findBeehiveDetails(String username, Long beehiveId) {
+    public Optional<UserBeehiveDetailsView> findBeehiveDetails(String username, Long beehiveId) {
         return userRepository.findByUsername(username)
                 .map(user -> {
                     BeehiveEntity currentBeehive = user.getBeehives()
@@ -150,7 +151,7 @@ public class UserService {
                             currentBeehive.getCapacity(),
                             currentBeehive.getStatus()
                     );
-                }).orElse(null);
+                });
     }
 
     public Page<UsersView> findAllUsers(Pageable pageable) {

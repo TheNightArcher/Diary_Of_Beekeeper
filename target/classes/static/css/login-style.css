@@ -125,6 +125,16 @@ form .txt_field {
     color: whitesmoke;
 }
 
+.pass a {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+.pass a:hover {
+    text-decoration: underline;
+    color: whitesmoke;
+}
+
 .error{
     color: #de2c2c;
     font-size: 19px;

@@ -1,5 +1,6 @@
 package bg.dirybeekeeper.diaryofbeekeeper.web;
 
+import bg.dirybeekeeper.diaryofbeekeeper.exception.ObjectNotFoundException;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.BeehiveAddBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.EditBeehiveBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.BeehiveAddServiceModel;
@@ -82,14 +83,17 @@ public class BeehivesController {
                                  Model model,
                                  @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
 
-        UserBeehiveDetailsView currentBeehive = userService.findBeehiveDetails(userDetails.getUsername(), id);
+        UserBeehiveDetailsView currentBeehive = userService.findBeehiveDetails(userDetails.getUsername(), id)
+                .orElseThrow(() -> new ObjectNotFoundException("beehive with id:" + id + " is not found"));
+
         model.addAttribute("currentBeehive", currentBeehive);
 
         return "details";
     }
 
     @DeleteMapping("/beehives/details/{id}")
-    public String deleteBeehive(@PathVariable Long id, @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
+    public String deleteBeehive(@PathVariable Long id,
+                                @AuthenticationPrincipal BeekeeperUserDetails userDetails) {
         userService.deleteUserBeehiveById(userDetails.getUsername(), id);
         beehiveService.deleteBeehiveById(id);
 
