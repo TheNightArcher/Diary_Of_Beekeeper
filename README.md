@@ -8,7 +8,7 @@
 ![Beehives](https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/my_beehives_page.jpg)
 
 ### And this is how beehive details looks like:
-![Details](https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/beehive_details-page.jpg)
+![Details](https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/beehive_details.PNG)
 
 ### Build With:
 
