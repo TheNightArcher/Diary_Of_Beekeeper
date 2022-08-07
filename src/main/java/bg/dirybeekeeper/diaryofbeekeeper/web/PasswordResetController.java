@@ -1,10 +1,7 @@
 package bg.dirybeekeeper.diaryofbeekeeper.web;
 
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.ForgotPasswordBindingModel;
-import bg.dirybeekeeper.diaryofbeekeeper.service.EmailService;
 import bg.dirybeekeeper.diaryofbeekeeper.service.UserService;
-import org.modelmapper.ModelMapper;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +18,10 @@ import javax.validation.Valid;
 public class PasswordResetController {
 
     private final UserService userService;
-    private final EmailService emailService;
-    private final ModelMapper modelMapper;
     private final LocaleResolver localeResolver;
 
-    public PasswordResetController(UserService userService, EmailService emailService, ModelMapper modelMapper, LocaleResolver localeResolver) {
+    public PasswordResetController(UserService userService, LocaleResolver localeResolver) {
         this.userService = userService;
-        this.emailService = emailService;
-        this.modelMapper = modelMapper;
         this.localeResolver = localeResolver;
     }
 

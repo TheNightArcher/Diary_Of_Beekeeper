@@ -1,6 +1,5 @@
 package bg.dirybeekeeper.diaryofbeekeeper.service;
 
-import bg.dirybeekeeper.diaryofbeekeeper.exception.ObjectNotFoundException;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.ForgotPasswordBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.UserEntity;
