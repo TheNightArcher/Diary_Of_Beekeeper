@@ -5,7 +5,7 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum;
 
 import java.time.LocalDate;
 
-public class EditBeehiveService {
+public class EditBeehiveServiceModel {
     private QueenTypeEnum queenType;
     private LocalDate born;
     private float length;

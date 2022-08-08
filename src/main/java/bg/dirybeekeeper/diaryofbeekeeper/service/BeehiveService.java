@@ -4,7 +4,7 @@ import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum;
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenEntity;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.BeehiveAddServiceModel;
-import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveService;
+import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.repository.BeehiveRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -45,7 +45,7 @@ public class BeehiveService {
                 .orElse(null);
     }
 
-    public BeehiveEntity editBeehive(Long id, EditBeehiveService editedBeehive) {
+    public BeehiveEntity editBeehive(Long id, EditBeehiveServiceModel editedBeehive) {
         Optional<BeehiveEntity> beehiveFromRepo = beehiveRepository.findById(id);
 
         BeehiveEntity beehive = modelMapper.map(beehiveFromRepo, BeehiveEntity.class);
@@ -58,6 +58,8 @@ public class BeehiveService {
         beehive.setLastNutrition(editedBeehive.getLastNutrition());
         beehive.setCapacity(editedBeehive.getCapacity());
         beehive.setStatus(editedBeehive.getStatus());
+
+        beehiveRepository.save(beehive);
 
         return beehive;
     }

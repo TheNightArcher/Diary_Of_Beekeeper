@@ -4,7 +4,7 @@ import bg.dirybeekeeper.diaryofbeekeeper.exception.ObjectNotFoundException;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.BeehiveAddBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.binding.EditBeehiveBindingModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.service.BeehiveAddServiceModel;
-import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveService;
+import bg.dirybeekeeper.diaryofbeekeeper.model.service.EditBeehiveServiceModel;
 import bg.dirybeekeeper.diaryofbeekeeper.model.user.BeekeeperUserDetails;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehiveDetailsView;
 import bg.dirybeekeeper.diaryofbeekeeper.model.view.UserBeehivesView;
@@ -121,7 +121,7 @@ public class BeehivesController {
             return "redirect:/users/beehives/details/edit/{id}";
         }
 
-        EditBeehiveService editedBeehive = modelMapper.map(editBeehiveBindingModel, EditBeehiveService.class);
+        EditBeehiveServiceModel editedBeehive = modelMapper.map(editBeehiveBindingModel, EditBeehiveServiceModel.class);
 
         userService.editUserBeehiveById(userDetails.getUsername(), beehiveService.editBeehive(id, editedBeehive));
 
