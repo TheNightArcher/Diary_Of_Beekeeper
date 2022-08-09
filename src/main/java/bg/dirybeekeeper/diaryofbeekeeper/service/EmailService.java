@@ -25,7 +25,7 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendForgotPasswordVerificationCode(UserEntity user, Locale resolveLocale) {
+    public void sendSendNewPassword(UserEntity user, Locale resolveLocale) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         try {

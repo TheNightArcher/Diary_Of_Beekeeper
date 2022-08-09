@@ -39,7 +39,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void sendToUserVerificationCode(String email, Locale resolveLocale) {
+    public void findUserAndSendMail(String email, Locale resolveLocale) {
         Optional<UserEntity> byEmail = userRepository.findByEmail(email);
         UserEntity user = modelMapper.map(byEmail, UserEntity.class);
 
@@ -48,7 +48,7 @@ public class UserService {
 
         this.userRepository.save(user);
 
-        emailService.sendForgotPasswordVerificationCode(user, resolveLocale);
+        emailService.sendSendNewPassword(user, resolveLocale);
     }
 
     public void setUserNewPassword(ForgotPasswordBindingModel bindingModel) {

@@ -40,7 +40,7 @@ public class QueenServiceTest {
 
     @DisplayName("JUnit test for findQueen method")
     @Test
-    public void testFindQueen_shouldReturnObject() {
+    void testFindQueen_shouldReturnObject() {
         // arrange
         Optional<QueenTypeEnum> type = Optional.of(QueenTypeEnum.Yellow);
         when(queenRepositoryMock.findByQueenType(queen.getQueenType())).thenReturn(type);

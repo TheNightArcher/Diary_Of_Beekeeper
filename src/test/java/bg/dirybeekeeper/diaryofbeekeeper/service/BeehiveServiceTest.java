@@ -91,7 +91,7 @@ public class BeehiveServiceTest {
 
     @DisplayName("JUnit test for addBeehive method")
     @Test
-    public void testAddBeehive_ReturnObject() {
+    void testAddBeehive_ReturnObject() {
         // arrange
         when(modelMapperMock.map(beehiveAddServiceModel, BeehiveEntity.class)).thenReturn(beehive);
 
@@ -109,7 +109,7 @@ public class BeehiveServiceTest {
 
     @DisplayName("JUnit test for editBeehive method")
     @Test
-    public void testEditBeehive_ReturnNewEditedObject() {
+    void testEditBeehive_ReturnNewEditedObject() {
 
         // arrange
         when(mockBeehiveRepository.findById(any())).thenReturn(Optional.of(beehive));
@@ -134,7 +134,7 @@ public class BeehiveServiceTest {
 
     @DisplayName("JUnit test for deleteBeehive method")
     @Test
-    public void testDeleteBeehive() {
+    void testDeleteBeehive() {
         // arrange
         long beehiveId = 1;
         willDoNothing().given(mockBeehiveRepository).deleteById(beehiveId);
@@ -148,7 +148,7 @@ public class BeehiveServiceTest {
 
     @DisplayName("JUnit test for findBeehive metgod")
     @Test
-    public void testFindBeehive_shouldReturnObject() {
+    void testFindBeehive_shouldReturnObject() {
 
         when(mockBeehiveRepository.findById(beehive.getId())).thenReturn(Optional.of(beehive));
 

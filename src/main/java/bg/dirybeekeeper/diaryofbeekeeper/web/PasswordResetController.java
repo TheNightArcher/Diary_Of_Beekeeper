@@ -38,7 +38,7 @@ public class PasswordResetController {
             return "redirect:/";
         }
 
-        userService.sendToUserVerificationCode(forgotPasswordBindingModel.getEmail(), localeResolver.resolveLocale(request));
+        userService.findUserAndSendMail(forgotPasswordBindingModel.getEmail(), localeResolver.resolveLocale(request));
 
         return "redirect:/";
     }
