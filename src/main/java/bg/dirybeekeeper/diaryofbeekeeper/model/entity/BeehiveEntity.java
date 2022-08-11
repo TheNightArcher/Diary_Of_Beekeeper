@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @Entity(name = "beehives")
 public class BeehiveEntity extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Integer currentNumber;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

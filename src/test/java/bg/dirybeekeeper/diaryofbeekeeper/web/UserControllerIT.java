@@ -91,9 +91,7 @@ public class UserControllerIT {
                         .param("confirmPassword", user.getPassword())
                         .cookie(new Cookie("lang", Locale.ENGLISH.getLanguage()))
                         .with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(flash().attributeExists("org.springframework.validation.BindingResult.registerBindingModel"))
-                .andReturn().getFlashMap().get("org.springframework.validation.BindingResult.registerBindingModel");
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test

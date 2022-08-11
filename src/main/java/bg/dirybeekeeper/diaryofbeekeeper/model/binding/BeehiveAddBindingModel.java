@@ -1,7 +1,6 @@
 package bg.dirybeekeeper.diaryofbeekeeper.model.binding;
 
 import bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum;
-import bg.dirybeekeeper.diaryofbeekeeper.model.validation.UniqueBeehiveNumber;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -13,7 +12,6 @@ public class BeehiveAddBindingModel {
 
     @NotNull
     @Positive
-    @UniqueBeehiveNumber(message = "The beehive number should be unique.")
     private Integer currentNumber;
 
     @NotNull
