@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title th:text="#{beehive_logo}">Details</title>
     <link rel="stylesheet" th:href="@{/css/details-style.css}">
     <link rel="stylesheet" th:href="@{/css/nav-style.css}">
@@ -16,46 +17,47 @@
 <body>
 <header th:replace="/fragments/common::nav"></header>
 <main>
-    <h1 class="text-logo" th:text="#{beehive_logo}">Beehives details</h1>
-    <input type="hidden" name="beehiveId" id="beehiveId" th:value="${currentBeehive.id}">
-    <div class="beehive-details" th:object="${currentBeehive}">
-        <div class="beehive-layouts">
-            <h3 class="element-details" th:text="#{beehive_number}">Current Number</h3>
-            <h3 class="element-details" th:text="#{beehive_queen_type}">Queen type</h3>
-            <h3 class="element-details" th:text="#{beehive_queen_years}">Queen born</h3>
-            <h3 class="element-details" th:text="#{beehive_frames_length}">Length</h3>
-            <h3 class="element-details" th:text="#{beehive_frames_height}">High</h3>
-            <h3 class="element-details" th:text="#{beehive_frames_width}">Width</h3>
-            <h3 class="element-details" th:text="#{beehive_nutrition}">Last nutrition</h3>
-            <h3 class="element-details" th:text="#{beehive_capacity}">Capacity</h3>
-            <h3 class="element-details" th:text="#{beehive_status}">Status</h3>
-        </div>
+   <div class="banner">
+       <h1 class="text-logo" th:text="#{beehive_logo}">Beehives details</h1>
+       <input type="hidden" name="beehiveId" id="beehiveId" th:value="${currentBeehive.id}">
+       <div class="beehive-details" th:object="${currentBeehive}">
+           <div class="beehive-layouts">
+               <h3 class="element-details" th:text="#{beehive_number}">Current Number</h3>
+               <h3 class="element-details" th:text="#{beehive_queen_type}">Queen type</h3>
+               <h3 class="element-details" th:text="#{beehive_queen_years}">Queen born</h3>
+               <h3 class="element-details" th:text="#{beehive_frames_length}">Length</h3>
+               <h3 class="element-details" th:text="#{beehive_frames_height}">High</h3>
+               <h3 class="element-details" th:text="#{beehive_frames_width}">Width</h3>
+               <h3 class="element-details" th:text="#{beehive_nutrition}">Last nutrition</h3>
+               <h3 class="element-details" th:text="#{beehive_capacity}">Capacity</h3>
+               <h3 class="element-details" th:text="#{beehive_status}">Status</h3>
+           </div>
 
-        <div class="beehive-result">
-            <h3 class="element-details" th:text="*{currentNumber}">Current Number</h3>
-            <div th:switch="${currentBeehive.queenType}">
-                <h3 class="element-details"
-                    th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Brown}"
-                    th:text="#{queen_type_brown}"></h3>
-                <h3 class="element-details"
-                    th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Yellow}"
-                    th:text="#{queen_type_yellow}"></h3>
-                <h3 class="element-details"
-                    th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Black}"
-                    th:text="#{queen_type_black}"></h3>
-            </div>
-            <h3 class="element-details" th:text="*{queenBorn}">Queen born</h3>
-            <h3 class="element-details" th:text="*{length}">Length</h3>
-            <h3 class="element-details" th:text="*{high}">High</h3>
-            <h3 class="element-details" th:text="*{width}">Width</h3>
-            <h3 class="element-details" th:text="*{lastNutrition}">Last nutrition</h3>
-            <h3 class="element-details" th:text="*{capacity}">Capacity</h3>
-            <div th:switch="${currentBeehive.status}">
-                <h3 class="element-details" th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum).WORKING}" th:text="#{beehive_status_alive}">TRUE</h3>
-                <h3 class="element-details" th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum).NOT_WORKING}" th:text="#{beehive_status_dead}">FALSE</h3>
-            </div>
-        </div>
-
+           <div class="beehive-result">
+               <h3 class="element-details" th:text="*{currentNumber}">Current Number</h3>
+               <div th:switch="${currentBeehive.queenType}">
+                   <h3 class="element-details"
+                       th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Brown}"
+                       th:text="#{queen_type_brown}"></h3>
+                   <h3 class="element-details"
+                       th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Yellow}"
+                       th:text="#{queen_type_yellow}"></h3>
+                   <h3 class="element-details"
+                       th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.QueenTypeEnum).Black}"
+                       th:text="#{queen_type_black}"></h3>
+               </div>
+               <h3 class="element-details" th:text="*{queenBorn}">Queen born</h3>
+               <h3 class="element-details" th:text="*{length}">Length</h3>
+               <h3 class="element-details" th:text="*{high}">High</h3>
+               <h3 class="element-details" th:text="*{width}">Width</h3>
+               <h3 class="element-details" th:text="*{lastNutrition}">Last nutrition</h3>
+               <h3 class="element-details" th:text="*{capacity}">Capacity</h3>
+               <div th:switch="${currentBeehive.status}">
+                   <h3 class="element-details" th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum).WORKING}" th:text="#{beehive_status_alive}">TRUE</h3>
+                   <h3 class="element-details" th:case="${T(bg.dirybeekeeper.diaryofbeekeeper.model.entity.BeehiveStatusEnum).NOT_WORKING}" th:text="#{beehive_status_dead}">FALSE</h3>
+               </div>
+           </div>
+       </div>
        <div class="cards-container">
            <div class="card-body">
                <form
@@ -75,7 +77,7 @@
                </form>
            </div>
        </div>
-    </div>
+   </div>
 </main>
 <footer th:replace="/fragments/common::footer"></footer>
 </body>
