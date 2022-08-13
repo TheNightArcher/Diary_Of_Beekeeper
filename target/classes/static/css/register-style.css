@@ -2,7 +2,6 @@ body {
     font-family: montserrat, sans-serif;
     background: linear-gradient(to right, #FCB43A, #3A3637);
     position: relative;
-    height: 100vh;
 }
 
 .center {
@@ -38,7 +37,7 @@ form .txt_field {
     width: 100%;
     padding: 0 5px;
     height: 40px;
-    font-size: 25px;
+    font-size: 22px;
     border: none;
     background: none;
     outline: none;
