@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 // everyone can login and register
                 .antMatchers("/", "/static/favicon.ico", "/users/forgot").permitAll()
                 .antMatchers("/users/login", "/users/register", "/users/process_register", "/verify", "/change").anonymous()
-                .antMatchers("/users/add-beehives", "/users/beehives/**").authenticated()
+                .antMatchers("/users/add-beehives", "/users/beehives/**","**/api/**").authenticated()
                 .antMatchers("/users/admin/view").hasRole("ADMIN")
                 // all other pages are available for logger in users
                 .anyRequest()
