@@ -92,16 +92,13 @@ public class BeehiveServiceTest {
     @DisplayName("JUnit test for addBeehive method")
     @Test
     void testAddBeehive_ReturnObject() {
-        // arrange
         when(modelMapperMock.map(beehiveAddServiceModel, BeehiveEntity.class)).thenReturn(beehive);
 
         when(mockBeehiveRepository.save(any()))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
-        //act
         BeehiveEntity result = beehiveServiceTest.addBeehive(beehiveAddServiceModel);
 
-        //assert
         verify(mockBeehiveRepository).save(any());
         assertEquals(beehive.getCurrentNumber(), result.getCurrentNumber());
         assertEquals(beehive.getCapacity(), result.getCapacity());
@@ -111,7 +108,6 @@ public class BeehiveServiceTest {
     @Test
     void testEditBeehive_ReturnNewEditedObject() {
 
-        // arrange
         when(mockBeehiveRepository.findById(any())).thenReturn(Optional.of(beehive));
 
         mockBeehiveRepository.save(any());
@@ -123,10 +119,8 @@ public class BeehiveServiceTest {
         given(mockBeehiveRepository.save(beehive))
                 .willReturn(beehive);
 
-        //act
         BeehiveEntity result = beehiveServiceTest.editBeehive(beehive.getId(), editBeehiveServiceModel);
 
-        //assert
         verify(mockBeehiveRepository).save(result);
         assertEquals(beehive.getHigh(), result.getHigh());
         assertEquals(beehive.getCapacity(), result.getCapacity());
@@ -135,14 +129,11 @@ public class BeehiveServiceTest {
     @DisplayName("JUnit test for deleteBeehive method")
     @Test
     void testDeleteBeehive() {
-        // arrange
         long beehiveId = 1;
         willDoNothing().given(mockBeehiveRepository).deleteById(beehiveId);
 
-        //act
         beehiveServiceTest.deleteBeehiveById(beehiveId);
 
-        //assert
         verify(mockBeehiveRepository, times(1)).deleteById(beehiveId);
     }
 
