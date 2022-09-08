@@ -1,0 +1,118 @@
+body {
+    font-family: montserrat, sans-serif;
+    background: linear-gradient(to right, #FCB43A, #3A3637);
+    position: relative;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background: #614a24;
+    border-radius: 10px;
+    margin: 0 34%;
+}
+
+.center h1 {
+    text-align: center;
+    padding: 0 0 4% 0;
+    border-bottom: 1px solid silver;
+    color: goldenrod;
+}
+
+.center form {
+    padding: 0 8%;
+    box-sizing: border-box;
+}
+
+form .txt_field {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 10% 0;
+}
+
+.txt_field input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 22px;
+    border: none;
+    background: none;
+    outline: none;
+    color: #d3d9df;
+}
+
+.txt_field label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.txt_field span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: goldenrod;
+    transition: .5s;
+}
+
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label {
+    top: -5px;
+    color: goldenrod;
+}
+
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before {
+    width: 100%;
+}
+
+.pass {
+    margin: -5px 0 20px 5px;
+    color: #adadad;
+    cursor: pointer;
+}
+
+.pass:hover {
+    text-decoration: underline;
+
+}
+
+.register-button {
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: goldenrod;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 22px;
+}
+
+.register-button:hover {
+    border-color: goldenrod;
+    transition: .5s;
+}
+
+.validation-error{
+    color: #d53737eb;
+    font-size: 14px;
+    position: relative;
+    border: 1px solid #ffc1075e;
+    background-color: rgba(77, 61, 24, 0.32);
+    border-radius: 5px;
+    padding-left: 10px;
+}

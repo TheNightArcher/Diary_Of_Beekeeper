@@ -1,0 +1,66 @@
+body {
+    font-family: montserrat, sans-serif;
+    background: linear-gradient(to right, #FCB43A, #3A3637);
+    height: 100vh;
+    overflow: auto;
+}
+
+.beehives-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.beehive-container {
+    min-width: 300px;
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.text-logo {
+    text-align: center;
+    color: wheat;
+    margin-top: 40px;
+}
+
+.beehive-logo {
+    width: 260px;
+    text-align: center;
+}
+
+.beehive-container .beehive-number {
+    position: relative;
+    top: 34px;
+    right: 153px;
+    margin: 5px 5px 5px 5px;
+    color: #2b69ad;
+}
+
+.pagination {
+    margin-top: 230px;
+    margin-bottom: 20px;
+}
+
+.page{
+    margin:5px;
+    padding: 5px;
+    border: 2px solid sandybrown;
+    background: goldenrod;
+    border-radius: 22px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.page:hover {
+    border-color: goldenrod;
+    transition: .5s;
+    color: #e9f4fb;
+}
