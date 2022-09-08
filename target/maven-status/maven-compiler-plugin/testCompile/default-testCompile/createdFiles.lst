@@ -1,9 +1,0 @@
-bg\dirybeekeeper\diaryofbeekeeper\service\BeehiveServiceTest.class
-bg\dirybeekeeper\diaryofbeekeeper\web\PasswordRestControllerIT.class
-bg\dirybeekeeper\diaryofbeekeeper\web\BeehiveControllerIT.class
-bg\dirybeekeeper\diaryofbeekeeper\web\UserControllerIT.class
-bg\dirybeekeeper\diaryofbeekeeper\security\BeekeeperUserDetailsServiceTest.class
-bg\dirybeekeeper\diaryofbeekeeper\service\UserServiceTest.class
-bg\dirybeekeeper\diaryofbeekeeper\utils\UtilDataTest.class
-bg\dirybeekeeper\diaryofbeekeeper\service\QueenServiceTest.class
-bg\dirybeekeeper\diaryofbeekeeper\DiaryOfBeekeeperApplicationTests.class
