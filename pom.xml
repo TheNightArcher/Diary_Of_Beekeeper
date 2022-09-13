@@ -82,11 +82,6 @@
             <version>42.5.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>net.sourceforge.nekohtml</groupId>
-            <artifactId>nekohtml</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
