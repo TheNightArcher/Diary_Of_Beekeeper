@@ -5,7 +5,7 @@
 ## About The Project
 ### The purpose of this application is to help with the organization of beekeepers, making it easy and convenient for each beekeeper to create a list of his own beehives in which to store all the information about them.
 
-[Demo](https://diary-of-beekeeper.herokuapp.com)
+## [Demo](https://diary-of-beekeeper.herokuapp.com)
 
 ![Beehives](https://github.com/TheNightArcher/Diary_Of_Beekeeper/blob/master/images/my_beehives_page.jpg)
 
