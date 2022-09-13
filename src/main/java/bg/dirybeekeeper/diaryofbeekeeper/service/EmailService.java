@@ -70,7 +70,7 @@ public class EmailService {
         context.setLocale(locale);
         context.setVariable("username", user.getUsername());
         context.setVariable("randomPassword", user.getPassword());
-        context.setVariable("link", "https://diary-of-beekeeper.herokuapp.com/change?code=");
+        context.setVariable("link", "http://localhost:8080/change?code=");
 
         return templateEngine.process("email/forgot-password", context);
     }
@@ -80,7 +80,7 @@ public class EmailService {
         Context context = new Context();
         context.setLocale(locale);
         context.setVariable("username", user.getUsername());
-        context.setVariable("link", "https://diary-of-beekeeper.herokuapp.com/verify?code=" + user.getVerificationCode());
+        context.setVariable("link", "http://localhost:8080/verify?code=" + user.getVerificationCode());
 
         return templateEngine.process("email/registration", context);
     }
